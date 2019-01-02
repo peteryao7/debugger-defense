@@ -1,0 +1,25 @@
+{
+  "name": "debugger-defense",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node app.js",
+    "server": "nodemon app.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "jsonwebtoken": "^8.4.0",
+    "mongoose": "^5.4.1",
+    "passport": "^0.4.0",
+    "passport-jwt": "^4.0.0",
+    "validator": "^10.10.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.18.9"
+  }
+}
