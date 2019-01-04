@@ -1,23 +1,32 @@
 import React from 'react';
+import GamePlay from "../../gameplay/gameplay";
 
 class Game extends React.Component {
+    constructor(props) {
+        super(props)
+
+        this.initializeGame = this.initializeGame.bind(this)
+    }
+
     componentDidMount() {
-        const canvas = this.refs.canvas;
-        const ctx = canvas.getContext("2d");
-        ctx.fillStyle = 'blue';
-        ctx.fillRect(0, 0, canvas.width, canvas.height);
-        // requestAnimationFrame(initializeGame)
-        //takes another func as an arg--nice for game loops
+        requestAnimationFrame(this.initializeGame)
     }
 
     initializeGame() {
-        //new Game;
+        const player = {
+            username: "LazyGuest",
+        }
+
+        const canvas = this.refs.canvas;
+        const ctx = canvas.getContext("2d");
+
+        new GamePlay(player, ctx)
     }
 
     render() {
         return (
-             < div >
-                <canvas ref="canvas" width={640} height={425} />
+             <div>
+                <canvas ref="canvas" width={1000} height={600} />
             </div >
         )
     }
