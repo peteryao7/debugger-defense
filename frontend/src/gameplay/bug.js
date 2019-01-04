@@ -22,12 +22,23 @@ class Bug {
     }
 
     draw(ctx) {
+        this.drawBug(ctx)
+        this.drawWord(ctx)
+    }
+
+    drawBug(ctx) {
         ctx.fillStyle = this.color;
         ctx.beginPath();
         ctx.arc(
             this.position[0], this.position[1], this.radius, 0, 2 * Math.PI, true
         );
         ctx.fill();
+    }
+
+    drawWord(ctx) {
+        ctx.fillStyle = "black";
+        ctx.font = "20px Comic Sans";
+        ctx.fillText("test", this.position[0] - 10, this.position[1])
     }
 
     move() {
