@@ -14,13 +14,53 @@ class GamePlay {
             new Bug(this.difficulty)
         ))
 
+        this.parse();
         this.animate();
     }
 
+
+    parse() {
+        window.addEventListener("keydown", event => {
+            for (let i = 0; i < this.bugs.length; i++) {
+                for (let j = 0; j < this.bugs[i].word.length; j++) {
+                    if (this.bugs[i].word.charAt(j) === "$") {
+                        continue;
+                    } else if (event.key === this.bugs[i].word.charAt(j)) {
+                        this.bugs[i].word = this.bugs[i].word.replace(this.bugs[i].word.charAt(j), "$");
+                    } else {
+                        break;
+                    }
+                    console.log(this.bugs);
+                }
+            }
+        });
+    };
+
+    // parse() {
+    //     // const bugs = ["cat", "dog", "lizard", "elephant", "car"];
+    //     window.addEventListener("keydown", event => {
+    //         for (let i = 0; i < this.bugs.length; i++) {
+    //             for (let j = 0; j < this.bugs.word[i].length; j++) {
+    //                 if (this.bugs.word[i].charAt(j) === "$") {
+    //                     continue;
+    //                 } else if (event.key === this.bugs.word[i].charAt(j)) {
+    //                     this.bugs.word[i] = this.bugs.word[i].replace(this.bugs.word[i].charAt(j), "$");
+    //                 } else {
+    //                     break;
+    //                 }
+    //                 console.log(this.bugs);
+    //             }
+    //         }
+    //     });
+    // };
+
     animate() {
         this.detectCollision()
+        this.detectFullSpelling();
         this.draw(this.ctx);
         this.step()
+        
+        // randomly adds bugs
         let x = Math.random()
         if (x < .02 && this.bugs.length < 20) {
             this.moreBugs()
@@ -43,14 +83,24 @@ class GamePlay {
         })
     }
 
+    detectFullSpelling() {
+        this.bugs.forEach((bug, i) => {
+            if (bug.word[bug.word.length - 1] === "$") {
+                this.bugs.splice(i, 1)
+            }
+        })
+    };
+
     moreBugs() {
         this.bugs.push(new Bug(this.difficulty))
     }
 
     draw(ctx) {
+        //canvas background
         ctx.fillStyle = 'blue';
         ctx.fillRect(0, 0, 1000, 600);
 
+        //destination circle
         ctx.fillStyle = "red";
         ctx.beginPath();
         ctx.arc(
@@ -58,6 +108,7 @@ class GamePlay {
         );
         ctx.fill();
         
+        //draws bugs
         this.bugs.forEach((bug) => {
             bug.draw(ctx);
         });

@@ -1,4 +1,5 @@
 // import Word from 'word';
+// import { getRandomWord } from ../user-input/user_input";
 
 class Bug {
     constructor(difficulty) {
@@ -19,6 +20,9 @@ class Bug {
         this.radius = 20;
         this.xDiff = 1000 - this.position[0];
         this.yDiff = 600 - this.position[1];
+
+        // this.word = getWordFromDictionary(difficulty)
+        this.word = "amazing!";
     }
 
     draw(ctx) {
@@ -38,7 +42,7 @@ class Bug {
     drawWord(ctx) {
         ctx.fillStyle = "black";
         ctx.font = "20px Comic Sans";
-        ctx.fillText("test", this.position[0] - 10, this.position[1])
+        ctx.fillText(this.word, this.position[0] - 10, this.position[1])
     }
 
     move() {

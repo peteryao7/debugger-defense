@@ -14,7 +14,7 @@ class Game extends React.Component {
 
     initializeGame() {
         const player = {
-            username: "LazyGuest",
+            username: "LazyGuest"
         }
 
         const canvas = this.refs.canvas;
