@@ -8,11 +8,11 @@ class MainPage extends React.Component {
   render() {
     return (
       <div>
-        <div>
-          <Game />
-          <PlayerScoreContainer />
+        <div className="game-player-score-box">
+          <div className="game-container"><Game /></div>
+          <div className="player-score-container"><PlayerScoreContainer /></div>
         </div>
-        <div>
+        <div className="leaderboard-container">
           <LeaderBoardContainer />
         </div>
         <footer>
