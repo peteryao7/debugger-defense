@@ -1,0 +1,42 @@
+.navbar-container {
+    font-family: 'Press Start 2P', cursive;
+    text-transform: uppercase;
+    background: #d0d0d0;
+    padding-top: 10px;
+}
+
+a { 
+    color: black;
+}
+
+.navbar-title {
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+    padding: 10px 0 0 0;
+}
+
+.navbar-sisu-outer {
+    display: flex;
+    justify-content: flex-end;
+    font-size: 12px;
+    padding-bottom: 5px;
+}
+
+.navbar-sisu-outer a {
+    text-decoration: none;
+}
+
+.navbar-sisu-outer a:hover {
+    text-decoration: none;
+    color: #007b00;
+    transition: .4s;
+}
+
+.nav-signup {
+    padding-right: 10px;
+}
+
+.nav-login {
+    padding-right: 10px;
+}
