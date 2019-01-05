@@ -1,9 +1,8 @@
 // import Word from 'word';
-// import { getRandomWord } from ../user-input/user_input";
+import { getRandomWord } from "../user-input/user_input";
 
 class Bug {
     constructor(difficulty) {
-        // this.word = new Word(difficulty);
         let xPos, yPos;
         
         if (Math.random() > .5) {
@@ -20,9 +19,7 @@ class Bug {
         this.radius = 20;
         this.xDiff = 1000 - this.position[0];
         this.yDiff = 600 - this.position[1];
-
-        // this.word = getWordFromDictionary(difficulty)
-        this.word = "amazing!";
+        this.word = getRandomWord(difficulty);
     }
 
     draw(ctx) {
