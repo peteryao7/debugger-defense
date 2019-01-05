@@ -18,10 +18,13 @@
     "body-parser": "^1.18.3",
     "concurrently": "^4.1.0",
     "express": "^4.16.4",
+    "file-system": "^2.2.2",
+    "fs": "0.0.1-security",
     "jsonwebtoken": "^8.4.0",
     "mongoose": "^5.4.1",
     "passport": "^0.4.0",
     "passport-jwt": "^4.0.0",
+    "requirejs": "^2.3.6",
     "validator": "^10.10.0"
   },
   "devDependencies": {
