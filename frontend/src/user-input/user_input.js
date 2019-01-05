@@ -9,48 +9,28 @@ import level8Words from "./level8";
 import level9Words from "./level9";
 import level10Words from "./level10";
 
-const parse = function() {
-  // let bugs = new Array(15);
-  // for (let i = 0; i < bugs.length; i++){
-  //   bugs
-  // }
-  const bugs = ["cat", "dog", "lizard", "elephant", "car"];
-
-  document.getElementById("input").addEventListener("keydown", event => {
-    for (let i = 0; i < bugs.length; i++) {
-      for (let j = 0; j < bugs[i].length; j++) {
-        if (bugs[i].charAt(j) === "$") {
-          continue;
-        } else if (event.key === bugs[i].charAt(j)) {
-          bugs[i] = bugs[i].replace(bugs[i].charAt(j), "$");
-        } else {
-          break;
-        }
-        console.log(bugs);
-      }
-    }
-  });
-};
-
 export function getRandomWord(difficulty) {
-  if (difficulty === 1)
+  if (difficulty === 1) {
     return level1Words[Math.floor(Math.random() * level1Words.length)];
-  else if (difficulty === 2)
+  } else if (difficulty === 2) {
     return level2Words[Math.floor(Math.random() * level2Words.length)];
-  else if (difficulty === 3)
+  } else if (difficulty === 3) {
     return level3Words[Math.floor(Math.random() * level3Words.length)];
-  else if (difficulty === 4)
+  } else if (difficulty === 4) {
     return level4Words[Math.floor(Math.random() * level4Words.length)];
-  else if (difficulty === 5)
+  } else if (difficulty === 5) {
     return level5Words[Math.floor(Math.random() * level5Words.length)];
-  else if (difficulty === 6)
+  } else if (difficulty === 6) {
     return level6Words[Math.floor(Math.random() * level6Words.length)];
-  else if (difficulty === 7)
+  } else if (difficulty === 7) {
     return level7Words[Math.floor(Math.random() * level7Words.length)];
-  else if (difficulty === 8)
+  } else if (difficulty === 8) {
     return level8Words[Math.floor(Math.random() * level8Words.length)];
-  else if (difficulty === 9)
+  } else if (difficulty === 9) {
     return level9Words[Math.floor(Math.random() * level9Words.length)];
-  else
+  } else if (difficulty === 10) {
     return level10Words[Math.floor(Math.random() * level10Words.length)];
+  } else {
+    return "BROKEN";
+  }
 }
