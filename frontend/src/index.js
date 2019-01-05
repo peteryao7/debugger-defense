@@ -5,9 +5,12 @@ import configureStore from './store/store';
 import jwt_decode from 'jwt-decode';
 import { setAuthToken } from './util/session_api_util';
 import { logout } from './actions/session_actions';
+import { getRandomWord } from './user-input/user_input';
 
 document.addEventListener('DOMContentLoaded', () => {
   let store;
+
+    window.getRandomWord = getRandomWord;
 
   if (localStorage.jwtToken) {
     setAuthToken(localStorage.jwtToken);
