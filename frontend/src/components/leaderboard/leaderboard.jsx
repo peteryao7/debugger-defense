@@ -19,6 +19,7 @@ class LeaderBoard extends React.Component {
         //currently dummy info
         return (
             <div>
+                <h5>Leaderboard</h5>
                 <li>LazyGuest: 10000</li>
                 <li>BugSquasher: 9999</li>
                 <li>SickKid: 10</li>

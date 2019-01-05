@@ -1,0 +1,21 @@
+.navbar-container {
+    font-family: 'Press Start 2P', cursive;
+    /* justify-content: center;
+    align-items: center; */
+}
+
+.navbar-title {
+    display: flex;
+    justify-content: center;
+    font-size: 28px;
+}
+
+.navbar-sisu-outer {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.nav-signup {
+    display: flex;
+    /* flex-direction: column; */
+}
