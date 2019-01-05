@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import Profile from './profile';
+import PlayerScore from './player_score';
 
 const mapStateToProps = (state) => {
   return {
@@ -10,4 +10,4 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = dispatch => {
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Profile);
+export default connect(mapStateToProps, mapDispatchToProps)(PlayerScore);
