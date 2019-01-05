@@ -22,9 +22,9 @@ class NavBar extends React.Component {
         );
       } else {
         return (
-            <div>
-                <Link to={'/signup'}>Signup</Link>
-                <Link to={'/login'}>Login</Link>
+            <div className="navbar-sisu-outer">
+                <div className="nav-signup"><Link to={'/signup'}>Signup</Link></div>
+                <div className="nav-login"><Link to={'/login'}>Login</Link></div>
             </div>
         );
       }
@@ -32,9 +32,9 @@ class NavBar extends React.Component {
 
   render() {
       return (
-        <div>
-            <h1>Debugger Defense</h1>
-            { this.getLinks() }
+        <div className="navbar-container">
+            <div className="navbar-title">Debugger Defense</div>
+            <div className="navbar-sisu-inner">{this.getLinks()}</div>
         </div>
       );
   }
