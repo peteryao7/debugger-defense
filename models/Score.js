@@ -2,15 +2,15 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const ScoreSchema = new Schema({
-    handle: {
-      type: String,
+    score: {
+      type: Number,
       required: true
     },
-    email: {
-      type: String,
+    secondsElapsed: {
+      type: Number,
       required: true
     },
-    password: {
+    username: {
       type: String,
       required: true
     },
@@ -19,5 +19,13 @@ const ScoreSchema = new Schema({
       default: Date.now
     }
 })
+
+// CLASS
+// ScoreSchema.statics.name = function () {
+// code here
+// }
+
+// INSTANCE
+// SCoreSchema.methods.name... 
 
 module.exports = Score = mongoose.model('scores', ScoreSchema);
