@@ -31,6 +31,6 @@ export function getRandomWord(difficulty) {
   } else if (difficulty === 10) {
     return level10Words[Math.floor(Math.random() * level10Words.length)];
   } else {
-    return "BROKEN";
+    return "BROKEN"
   }
-}
+};

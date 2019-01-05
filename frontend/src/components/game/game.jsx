@@ -27,6 +27,7 @@ class Game extends React.Component {
         return (
              <div>
                 <canvas ref="canvas" width={1000} height={600} />
+                <button onClick={this.initializeGame}>Restart</button>
             </div >
         )
     }
