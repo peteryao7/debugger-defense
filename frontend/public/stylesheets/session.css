@@ -1,0 +1,57 @@
+/* LOGIN BELOW */
+.session-modal-box{
+  width: 400px;
+  height: 300px;
+  padding: 10px;
+  background: #DCDCDC;
+  border-radius: 10px;
+  border-color: 2px solid black;
+  box-shadow: -20px 20px 20px black;
+}
+
+.signup-modal-box{
+  height: 500px;
+}
+
+.session-modal-box > h1 {
+  text-align: center;
+  color: black;
+  font-size: 25px;
+}
+
+.session-modal-box > h2 {
+  text-align: center;
+  color: black;
+  font-size: 18px;
+}
+
+.session-input {
+  width: 80%;
+  height: 50px;
+ 
+  margin: 0 10%;
+  margin-bottom: 10px;
+  padding: 5px;
+
+  border-radius: 5px;
+  background: white;
+  box-sizing: border-box;
+  border: 1px solid black;
+
+  font-size: 20px;
+}
+
+.session-button {
+  background: white;
+  border-radius: 5px;
+  padding: 10px;
+  margin-top: 15px;
+  margin-left: 10%;
+  border: 1px solid black;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.session-button:hover {
+  background: gray;
+}
