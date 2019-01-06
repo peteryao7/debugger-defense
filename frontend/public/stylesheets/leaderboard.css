@@ -1,0 +1,26 @@
+
+.leaderboard-inner-div {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: white;
+}
+
+h5 {
+    font-size: 18px;
+}
+
+ul.leaderboard-score-list {
+    width: 85%;
+    overflow: scroll;
+}
+
+li.leaderboard-single-score {
+    list-style: none;
+    padding: 15px;
+    border-bottom: 1px solid #d0d0d0;
+    display: flex;
+    justify-content: center;
+    font-size: 12px;
+}

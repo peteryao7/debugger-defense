@@ -6,6 +6,7 @@ import LeaderBoardContainer from '../leaderboard/leaderboard_container';
 class MainPage extends React.Component {
 
   render() {
+    debugger
     return (
       <div>
         <div className="main-inner-container">
@@ -17,7 +18,7 @@ class MainPage extends React.Component {
             <LeaderBoardContainer />
           </div>
         </div>
-        <footer>
+        <footer className="footer">
           Copyright &copy; 2019
         </footer>
       </div>
