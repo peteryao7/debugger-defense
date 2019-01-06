@@ -32,3 +32,7 @@ canvas {
     width: 80vw;
     height: 80vh;
 }
+
+footer.footer {
+    background: #d0d0d0;
+}
