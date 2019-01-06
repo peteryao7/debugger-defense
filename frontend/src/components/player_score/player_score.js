@@ -8,7 +8,7 @@ class PlayerScore extends React.Component {
     }
     
     componentDidMount() {
-        console.log(this.props.currentUser.id)
+        this.props.fetchSingleScore(this.props.currentUsername);
     }
 
     componentDidUpdate() {

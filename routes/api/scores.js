@@ -4,7 +4,6 @@ const Score = require("../../models/Score");
 const passport = require("passport");
 
 router.get("/scoreboard", (req, res) => {
-  debugger;
   Score.find()
     .sort({ score: -1 })
     .limit(50)

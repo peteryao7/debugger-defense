@@ -4,8 +4,8 @@ import Util from "./util";
 //needs to be passed the context from "../components/game", right?
 
 class GamePlay {
-    constructor (player, ctx, createScore) {
-        this.player = player;
+    constructor (currentUsername, ctx, createScore) {
+        this.currentUsername = currentUsername;
         this.ctx = ctx;
         this.destination = [970, 570]
         this.difficulty = 1;
@@ -14,6 +14,7 @@ class GamePlay {
         this.bugs = new Array(5).fill().map( el => (
             new Bug(this.difficulty)
         ))
+        this.score = 0;
 
         this.createScore = createScore;
 
@@ -55,7 +56,7 @@ class GamePlay {
             requestAnimationFrame(this.animate.bind(this));
         } else {
             this.gameOver();
-            this.createScore({score: 500, secondsElapsed: 10, username: "weactuallydidit"});
+            this.createScore({score: this.score, secondsElapsed: 10, username: this.currentUsername});
         }
     }
 
@@ -87,6 +88,7 @@ class GamePlay {
                 if (bug.word[bug.word.length - 1] === "$") {
                     this.bugs.splice(i, 1)
                     this.killCount += 1;
+                    this.score += 100 * this.difficulty
                 }
             })
         }
@@ -148,7 +150,7 @@ class GamePlay {
     drawKillCount(ctx) {
         ctx.fillStyle = "white";
         ctx.font = "20px Comic Sans";
-        ctx.fillText(`Kill count: ${this.killCount} Level: ${this.difficulty} Lives: ${this.lives}`, 200, 200)
+        ctx.fillText(`Score: ${this.score}, Kill count: ${this.killCount} Level: ${this.difficulty} Lives: ${this.lives}`, 200, 200)
     }
 
 }

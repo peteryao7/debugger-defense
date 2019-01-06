@@ -1,6 +1,18 @@
 import { connect } from 'react-redux'
 import { createScore } from "../../actions/score_actions";
-import Game from './game'
+import Game from './game';
+
+const mapStateToProps = state => {
+  let currentUsername;
+    if (Object.keys(state.session.user).length === 0) {
+    currentUsername = "LazyGuest";
+  } else {
+    currentUsername = state.session.user.username;
+  }
+  return {
+    currentUsername
+  };
+};
 
 const mapDispatchToProps = dispatch => {
     return {
@@ -8,4 +20,7 @@ const mapDispatchToProps = dispatch => {
     };
 };
 
-export default connect(null, mapDispatchToProps)(Game);
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Game);

@@ -3,9 +3,15 @@ import { fetchScores, fetchSingleScore } from "../../actions/score_actions";
 import LeaderBoard from './leaderboard'
 
 const mapStateToProps = (state) => {
+    let currentUsername;
+    if (Object.keys(state.session.user).length === 0) {
+      currentUsername = "LazyGuest";
+    } else {
+      currentUsername = state.session.user.username;
+    }
     return {
         scores: state.scores,
-        currentUsername: state.session.user.username
+        currentUsername
     };
 };
 

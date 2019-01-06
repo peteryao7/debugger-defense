@@ -13,14 +13,9 @@ class Game extends React.Component {
     }
 
     initializeGame() {
-        const player = {
-            username: "LazyGuest"
-        }
-
         const canvas = this.refs.canvas;
         const ctx = canvas.getContext("2d");
-
-        new GamePlay(player, ctx, this.props.createScore)
+        new GamePlay(this.props.currentUsername, ctx, this.props.createScore)
     }
 
     render() {

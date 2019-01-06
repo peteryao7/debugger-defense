@@ -7,14 +7,14 @@ class Bug {
         
         if (Math.random() > .5) {
             xPos = 20;
-            yPos = Math.random() * 600;
+            yPos = Math.random() * 500;
         } else {
-            xPos = Math.random() * 1000;
+            xPos = Math.random() * 800;
             yPos = 20;
         }
 
         this.position = [xPos, yPos]
-        this.speed = (Math.random() * 2000) + 100;
+        this.speed = (Math.random() * 1500) + 100;
         this.color = "yellow";
         this.radius = 20;
         this.xDiff = 1000 - this.position[0];

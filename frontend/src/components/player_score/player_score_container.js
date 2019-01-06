@@ -1,14 +1,23 @@
 import { connect } from 'react-redux';
+import { fetchSingleScore } from '../../actions/score_actions'
 import PlayerScore from './player_score';
 
 const mapStateToProps = (state) => {
+  let currentUsername;
+  if (Object.keys(state.session.user).length === 0) {
+    currentUsername = "LazyGuest";
+  } else {
+    currentUsername = state.session.user.username;
+  }
   return {
-    currentUser: state.session.user
+    currentUsername
   };
 };
 
 const mapDispatchToProps = dispatch => {
-  return {}
+  return { 
+    fetchSingleScore: username => dispatch(fetchSingleScore(username)) 
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(PlayerScore);
