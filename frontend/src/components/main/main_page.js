@@ -1,5 +1,5 @@
 import React from 'react';
-import Game from '../game/game';
+import GameContainer from '../game/game_container';
 import PlayerScoreContainer from '../player_score/player_score_container';
 import LeaderBoardContainer from '../leaderboard/leaderboard_container';
 
@@ -9,7 +9,7 @@ class MainPage extends React.Component {
     return (
       <div>
         <div className="game-player-score-box">
-          <div className="game-container"><Game /></div>
+          <div className="game-container"><GameContainer /></div>
           <div className="player-score-container"><PlayerScoreContainer /></div>
         </div>
         <div className="leaderboard-container">

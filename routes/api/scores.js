@@ -30,11 +30,11 @@ router.get("/currentPlayer/:username", (req, res) => {
 });
 
 router.post("/createScore", (req, res) => {
-  debugger;
+  // debugger;
   new Score({
-    score: req.body.score.score,
-    secondsElapsed: req.body.score.secondsElapsed,
-    username: req.body.score.username
+    score: req.body.score,
+    secondsElapsed: req.body.secondsElapsed,
+    username: req.body.username
   })
     .save()
     .then(newScore => {

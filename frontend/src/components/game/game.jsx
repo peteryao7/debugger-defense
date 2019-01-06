@@ -20,7 +20,7 @@ class Game extends React.Component {
         const canvas = this.refs.canvas;
         const ctx = canvas.getContext("2d");
 
-        new GamePlay(player, ctx)
+        new GamePlay(player, ctx, this.props.createScore)
     }
 
     render() {

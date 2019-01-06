@@ -20,10 +20,10 @@ export const fetchScores = () => dispatch =>
 
 export const fetchSingleScore = username => dispatch =>
   ScoreApiUtil.fetchSingleScore(username)
-    .then(score => dispatch(receiveSingleScore(score)))
+    .then(score => dispatch(receiveSingleScore(score.data.score)))
     .catch(err => console.log(err));
 
-export const createScore = data => dispatch =>
+export const createScore = data => dispatch => 
   ScoreApiUtil.createScore(data)
-    .then(score => dispatch(receiveSingleScore(score)))
+    .then(score => dispatch(receiveSingleScore(score.data)))
     .catch(err => console.log(err));

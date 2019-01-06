@@ -4,16 +4,19 @@ import Util from "./util";
 //needs to be passed the context from "../components/game", right?
 
 class GamePlay {
-    constructor (player, ctx) {
+    constructor (player, ctx, createScore) {
+        debugger
         this.player = player;
         this.ctx = ctx;
         this.destination = [970, 570]
         this.difficulty = 1;
         this.killCount = 0
-        this.lives = 5;
+        this.lives = 1;
         this.bugs = new Array(5).fill().map( el => (
             new Bug(this.difficulty)
         ))
+
+        this.createScore = createScore;
 
         this.parse();
         this.animate();
@@ -53,6 +56,8 @@ class GamePlay {
             requestAnimationFrame(this.animate.bind(this));
         } else {
             this.gameOver();
+            debugger;
+            this.createScore({score: 500, secondsElapsed: 10, username: "wedidit"});
         }
     }
 

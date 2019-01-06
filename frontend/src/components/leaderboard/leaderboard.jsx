@@ -18,7 +18,7 @@ class LeaderBoard extends React.Component {
     // }
 
     formatScores() {
-        debugger;
+        // debugger;
         const formatted = this.props.scores.map ( score =>
             {
                 return (<li key={score._id}>{score.username}: {score.score}</li>)
