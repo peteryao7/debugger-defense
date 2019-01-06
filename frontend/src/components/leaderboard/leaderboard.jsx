@@ -21,7 +21,7 @@ class LeaderBoard extends React.Component {
         debugger;
         const formatted = this.props.scores.map ( score =>
             {
-                return (<li key={score._id}>{score.username}: {score.score}</li>)
+                return (<li key={score._id} className="leaderboard-single-score">{score.username}: {score.score}</li>)
             }
         )
         return formatted;
@@ -36,9 +36,9 @@ class LeaderBoard extends React.Component {
         }
         
         return (
-            <div>
+            <div className="leaderboard-inner-div">
                 <h5>Leaderboard</h5>
-                <ul>{this.formatScores()}</ul>
+                <ul className="leaderboard-score-list">{this.formatScores()}</ul>
             </div>
         )
     }
