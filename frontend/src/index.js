@@ -5,14 +5,9 @@ import configureStore from "./store/store";
 import jwt_decode from "jwt-decode";
 import { setAuthToken } from "./util/session_api_util";
 import { logout } from "./actions/session_actions";
-import { fetchScores, fetchSingleScore, createScore } from "./util/score_api_util";
 
 document.addEventListener("DOMContentLoaded", () => {
   let store;
-
-  window.fetchScores = fetchScores;
-  window.fetchSingleScore = fetchSingleScore;
-  window.createScore = createScore;
 
   // If a returning user has a session token stored in localStorage
   if (localStorage.jwtToken) {
