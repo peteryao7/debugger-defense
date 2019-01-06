@@ -1,4 +1,4 @@
-import { fetchScores, fetchSingleScore, createScore } from "../util/score_api_util";
+import * as ScoreApiUtil from "../util/score_api_util";
 
 export const RECEIVE_SCORES = "RECEIVE_SCORES";
 export const RECEIVE_SINGLE_SCORE = "RECEIVE_SINGLE_SCORE";
@@ -14,16 +14,16 @@ export const receiveSingleScore = score => ({
 });
 
 export const fetchScores = () => dispatch =>
-  fetchScores()
+  ScoreApiUtil.fetchScores()
     .then(scores => dispatch(receiveScores(scores)))
     .catch(err => console.log(err));
 
 export const fetchSingleScore = username => dispatch =>
-  fetchSingleScore(username)
+  ScoreApiUtil.fetchSingleScore(username)
     .then(score => dispatch(receiveSingleScore(score)))
     .catch(err => console.log(err));
 
 export const createScore = data => dispatch =>
-  createScore(data)
+  ScoreApiUtil.createScore(data)
     .then(score => dispatch(receiveSingleScore(score)))
     .catch(err => console.log(err));
