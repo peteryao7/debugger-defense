@@ -4,11 +4,11 @@ import PlayerScoreContainer from '../player_score/player_score_container';
 import LeaderBoardContainer from '../leaderboard/leaderboard_container';
 
 class MainPage extends React.Component {
-
+  
   render() {
-    debugger
+    // debugger
     return (
-      <div>
+      <div className="main-outer-container">
         <div className="main-inner-container">
           <div className="game-player-score-box">
             <div className="game-container"><Game /></div>
