@@ -1,0 +1,14 @@
+.main-inner-container {
+    display: flex;
+}
+
+.game-player-score-box {
+    display: flex;
+    flex-direction: column;
+}
+
+.player-score-container {
+    display: flex;
+    justify-content: center;
+    padding: 10px;
+}
