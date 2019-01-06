@@ -8,7 +8,7 @@ const scoreReducer = (state = [], action) => {
       return action.scores;
     case RECEIVE_SINGLE_SCORE:
       let newState = state;
-      return newState.push(action.score);
+      return newState.concat([action.score]);
     default:
       return state;
   }

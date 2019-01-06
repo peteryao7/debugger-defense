@@ -5,7 +5,6 @@ import Util from "./util";
 
 class GamePlay {
     constructor (player, ctx, createScore) {
-        debugger
         this.player = player;
         this.ctx = ctx;
         this.destination = [970, 570]
@@ -56,8 +55,7 @@ class GamePlay {
             requestAnimationFrame(this.animate.bind(this));
         } else {
             this.gameOver();
-            debugger;
-            this.createScore({score: 500, secondsElapsed: 10, username: "wedidit"});
+            this.createScore({score: 500, secondsElapsed: 10, username: "weactuallydidit"});
         }
     }
 

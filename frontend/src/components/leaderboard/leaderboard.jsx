@@ -18,7 +18,7 @@ class LeaderBoard extends React.Component {
     // }
 
     formatScores() {
-        // debugger;
+        debugger;
         const formatted = this.props.scores.map ( score =>
             {
                 return (<li key={score._id}>{score.username}: {score.score}</li>)
@@ -30,7 +30,6 @@ class LeaderBoard extends React.Component {
     render() {
         //iterate through all player scores to render
         //currently dummy info
-        // debugger;
         if (this.props.scores.length === 0) {
             return null;
         }

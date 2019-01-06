@@ -16,7 +16,6 @@ router.get("/scoreboard", (req, res) => {
 });
 
 router.get("/currentPlayer/:username", (req, res) => {
-  debugger;
   Score.find()
     .sort({ score: -1 })
     .findOne({ username: req.params.username })
@@ -38,7 +37,7 @@ router.post("/createScore", (req, res) => {
   })
     .save()
     .then(newScore => {
-      res.json({ newScore });
+      res.json( newScore );
     });
 });
 
