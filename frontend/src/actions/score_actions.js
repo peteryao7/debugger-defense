@@ -15,7 +15,7 @@ export const receiveSingleScore = score => ({
 
 export const fetchScores = () => dispatch =>
   ScoreApiUtil.fetchScores()
-    .then(scores => dispatch(receiveScores(scores)))
+    .then(scores => dispatch(receiveScores(scores.data.scores)))
     .catch(err => console.log(err));
 
 export const fetchSingleScore = username => dispatch =>
