@@ -5,6 +5,7 @@ import Util from "./util";
 
 class GamePlay {
     constructor (currentUsername, ctx, createScore) {
+        // debugger;
         this.currentUsername = currentUsername;
         this.ctx = ctx;
         this.destination = [970, 570]

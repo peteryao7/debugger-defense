@@ -3,12 +3,13 @@ import { createScore } from "../../actions/score_actions";
 import Game from './game';
 
 const mapStateToProps = state => {
-    debugger;
+    // debugger;
   let currentUsername;
     if (state.session.user == undefined || Object.keys(state.session.user).length === 0) {
       currentUsername = "LazyGuest";
     } else {
-      currentUsername = state.session.user.username;
+    //   debugger;
+      currentUsername = state.session.user.username
     }
   return {
     currentUsername
