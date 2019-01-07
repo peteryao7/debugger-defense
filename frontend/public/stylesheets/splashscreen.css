@@ -1,0 +1,30 @@
+.splash-screen {
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  margin: 10px;
+  background: red;
+}
+
+.instructions {
+  
+}
+
+.start-button {
+  width: 25%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  background: blue;
+}
+
+.start-button:hover {
+  background: green;
+}

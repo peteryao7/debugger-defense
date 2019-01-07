@@ -17,11 +17,11 @@
 .leaderboard-container {
     display: flex;
     justify-content: center;
+    margin: 0 10px;
     width: 20vw;
     height: 90vh;
     background: #d0d0d0;
 }
-
 
 .canvas-restart-container {
     display: flex;
