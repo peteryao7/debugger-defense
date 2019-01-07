@@ -1,4 +1,4 @@
-/config/keys.js
 /node_modules
 /frontend/node_modules
 .DS_Store
+/config/keys_dev.js

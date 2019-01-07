@@ -19,7 +19,6 @@ const mapStateToProps = (state) => {
   }
 
   const highestScore = state.scores.filter(score => score.username === currentUsername).sort(compare)[0]
-  debugger;
 
   return {
     currentUsername,

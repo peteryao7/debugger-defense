@@ -3,23 +3,21 @@ import { createScore } from "../../actions/score_actions";
 import Game from './game';
 
 const mapStateToProps = state => {
-    // debugger;
   let currentUsername;
-    if (state.session.user === undefined || Object.keys(state.session.user).length === 0) {
-      currentUsername = "LazyGuest";
-    } else {
-    //   debugger;
-      currentUsername = state.session.user.username
-    }
+  if (state.session.user === undefined || Object.keys(state.session.user).length === 0) {
+    currentUsername = "LazyGuest";
+  } else {
+    currentUsername = state.session.user.username
+  }
   return {
     currentUsername
   };
 };
 
 const mapDispatchToProps = dispatch => {
-    return {
-        createScore: (data) => dispatch(createScore(data))
-    };
+  return {
+    createScore: (data) => dispatch(createScore(data))
+  };
 };
 
 export default connect(
