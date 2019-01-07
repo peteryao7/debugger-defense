@@ -8,10 +8,18 @@ const scoreReducer = (state = [], action) => {
       return action.scores;
     case RECEIVE_SINGLE_SCORE:
       let newState = state;
-      return newState.concat([action.score]);
+      return newState.concat([action.score]).sort(compare);
     default:
       return state;
   }
 };
+
+function compare(a, b) {
+  if (a.score < b.score)
+    return 1;
+  if (a.score > b.score)
+    return -1;
+  return 0;
+}
 
 export default scoreReducer;
