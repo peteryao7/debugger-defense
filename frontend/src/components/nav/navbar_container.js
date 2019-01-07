@@ -5,18 +5,17 @@ import { openModal } from "../../actions/modal_actions";
 import NavBar from './navbar';
 
 const mapStateToProps = state => {
-  // debugger;
   return {
   loggedIn: state.session.isAuthenticated
   }
 };
 
-// const mapDispatchToProps = dispatch => ({
-//   openModal: (modal) => dispatch(openModal(modal)),
-//   logout: () => logout()
-// })
+const mapDispatchToProps = dispatch => ({
+  openModal: (modal) => dispatch(openModal(modal)),
+  logout: () => dispatch(logout())
+})
 
 export default connect(
   mapStateToProps,
-  { logout }
+  mapDispatchToProps
 )(NavBar);
