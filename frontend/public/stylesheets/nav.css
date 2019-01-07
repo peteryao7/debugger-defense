@@ -19,6 +19,7 @@ a {
 .navbar-sisu-outer {
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     font-size: 12px;
     padding-bottom: 5px;
 }
@@ -36,6 +37,10 @@ a {
 .nav-signup {
     padding-right: 10px;
     padding-left: 10px;
+}
+
+.nav-signup:hover {
+    color:
 }
 
 .nav-login {

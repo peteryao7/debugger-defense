@@ -12,7 +12,7 @@ class Game extends React.Component {
         }
 
         this.startPlaying = this.startPlaying.bind(this);
-        this.initializeGame = this.initializeGame.bind(this)
+        this.initializeGame = this.initializeGame.bind(this);
     }
 
     initializeGame() {
