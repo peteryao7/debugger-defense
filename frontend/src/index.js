@@ -9,9 +9,7 @@ import { logout } from "./actions/session_actions";
 document.addEventListener("DOMContentLoaded", () => {
   let store;
 
-  // If a returning user has a session token stored in localStorage
   if (localStorage.jwtToken) {
-    // Set the token as a common header for all axios requests
     setAuthToken(localStorage.jwtToken);
     const decodedUser = jwt_decode(localStorage.jwtToken);
 
@@ -27,7 +25,6 @@ document.addEventListener("DOMContentLoaded", () => {
   } else {
     store = configureStore({});
   }
-  // Render our root component and pass in the store as a prop
   const root = document.getElementById("root");
 
   ReactDOM.render(<Root store={store} />, root);

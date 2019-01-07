@@ -7,28 +7,29 @@ class LeaderBoard extends React.Component {
     }
 
     componentDidMount() {
+<<<<<<< HEAD
+=======
         //fetch scores from all users (if we want scroll) otherwise top 10-50
+>>>>>>> 0c2042907d9cc3901deb46f98e7061fbe2fd16b3
         this.props.fetchScores();
     }
 
-    // componentDidUpdate() {
-    //     //update for player's current score
-    //     this.props.fetchScores();
-    // }
-
     formatScores() {
         const formatted = this.props.scores.map(score => {
-            return (<li key={score._id} className="leaderboard-single-score">{score.username}: {score.score}, {score.secondsElapsed} seconds</li>)
+            return (<li key={score.date} className="leaderboard-single-score">{score.username}: {score.score}, {score.secondsElapsed} seconds</li>)
         }
         )
         return formatted;
     }
 
     render() {
-        //iterate through all player scores to render
-        //currently dummy info
         if (this.props.scores.length === 0) {
-            return null;
+            return (
+                <div className="leaderboard-inner-div">
+                    <h5>Leaderboard</h5>
+                    <ul className="leaderboard-score-list"></ul>
+                </div>
+            );
         }
 
         return (

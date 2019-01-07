@@ -11,10 +11,6 @@ class PlayerScore extends React.Component {
         this.props.fetchSingleScore(this.props.currentUsername);
     }
 
-    componentDidUpdate() {
-        //update if the player's current score is greater than their highest score?
-    }
-
     render() {
         if (this.props.currentUsername === "LazyGuest") {
           return <div>Log in to see your name on the leaderboard!</div>;

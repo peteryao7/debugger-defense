@@ -21,9 +21,7 @@ router.get("/currentPlayer/:username", (req, res) => {
     .then(score => {
       if (score) {
         return res.json({ score: score });
-      } else {
-        return res.status(404).json({ score: -2 });
-      }
+      } 
     });
 });
 
@@ -38,17 +36,5 @@ router.post("/createScore", (req, res) => {
       res.json(newScore);
     });
 });
-
-// router.post("/anonscores", (req, res) => {
-//   new Score({
-//     score: req.body.score,
-//     secondsElapsed: req.body.secondsElapsed,
-//     username: req.body.username
-//   })
-//     .save()
-//     .then(newScore => {
-//       res.json({ newScore });
-//     });
-// });
 
 module.exports = router;
