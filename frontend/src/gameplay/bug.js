@@ -22,7 +22,7 @@ class Bug {
         this.xDiff = 1000 - this.position[0];
         this.yDiff = 600 - this.position[1];
         this.word = getRandomWord(difficulty);
-        
+
         this.image = bugImage;
         this.frameWidth = 160;
         this.frameHeight = 160;
@@ -36,18 +36,6 @@ class Bug {
     }
 
     drawBug(ctx) {
-        // ctx.drawImage(this.image, this.shift, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
-
-        // if ( (this.getTime - this.gameStartTime) % 1000 <= 250) {
-        //     this.shift += this.frameWidth + 1;
-        //     ctx.drawImage(this.image, this.shift, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
-        // }
-        
-        // if (this.currentFrame === this.totalFrames) {
-        //     this.shift = 0;
-        //     this.currentFrame = 0;
-        // }
-        // this.currentFrame += 1;
         this.elapsedTime = Date.now() - this.gameStartTime;
 
         if ((this.elapsedTime % 1000) <= 250) {
