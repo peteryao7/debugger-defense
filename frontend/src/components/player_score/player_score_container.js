@@ -4,7 +4,7 @@ import PlayerScore from './player_score';
 
 const mapStateToProps = (state) => {
   let currentUsername;
-  if (state.session.user == undefined || Object.keys(state.session.user).length === 0) {
+  if (state.session.user === undefined || Object.keys(state.session.user).length === 0) {
     currentUsername = "LazyGuest";
   } else {
     currentUsername = state.session.user.username;

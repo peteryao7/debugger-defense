@@ -40,8 +40,9 @@ export const login = user => dispatch => (
         const decoded = jwt_decode(token);
         const decoded_username = {username: JSON.parse(res.config.data).username};
         const user = Object.assign({}, decoded, decoded_username);
+        localStorage.setItem('user', user)
         debugger;
-        dispatch(receiveCurrentUser(user))
+        dispatch(receiveCurrentUser(decoded))
     })
     .catch(err => {
         dispatch(receiveErrors(err.response.data));
