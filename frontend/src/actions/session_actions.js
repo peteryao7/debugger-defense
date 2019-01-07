@@ -25,8 +25,9 @@ export const logoutUser = () => ({
 });
 
 export const signup = user => dispatch => (
-    APIUtil.signup(user).then(() => {
-        return dispatch(receiveUserSignIn())
+    APIUtil.signup(user).then((res) => {
+        debugger;
+        return dispatch(receiveCurrentUser(processToken(res)))
     }, err => (
         dispatch(receiveErrors(err.response.data))
     ))
@@ -34,16 +35,7 @@ export const signup = user => dispatch => (
 
 export const login = user => dispatch => (
     APIUtil.login(user).then(res => {
-        const { token } = res.data;
-        const username = JSON.parse(res.config.data).username;
-
-        localStorage.setItem('jwtToken', token);
-        localStorage.setItem("username", username)
-
-        APIUtil.setAuthToken(token);
-        const decoded = jwt_decode(token);
-        const user = Object.assign({}, decoded, { username }); 
-        dispatch(receiveCurrentUser(user))
+        return dispatch(receiveCurrentUser(processToken(res)))
     })
     .catch(err => {
         dispatch(receiveErrors(err.response.data));
@@ -55,3 +47,16 @@ export const logout = () => dispatch => {
     APIUtil.setAuthToken(false)
     dispatch(logoutUser())
 };
+
+const processToken = (routerRes) => {
+    debugger
+    const { token } = routerRes.data;
+    const username = JSON.parse(routerRes.config.data).username;
+
+    localStorage.setItem('jwtToken', token);
+    localStorage.setItem("username", username)
+
+    APIUtil.setAuthToken(token);
+    const decoded = jwt_decode(token);
+    return Object.assign({}, decoded, { username });
+}
