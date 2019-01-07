@@ -1,8 +1,13 @@
 .navbar-container {
+    width: 100%;
+    height: 75px;
     font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
     background: #d0d0d0;
-    padding-top: 10px;
+    box-sizing: border-box;
+
+    display: flex;
+    justify-content: center;
 }
 
 a { 
@@ -12,32 +17,50 @@ a {
 .navbar-title {
     display: flex;
     justify-content: center;
+    align-items: center;
     font-size: 28px;
-    padding: 10px 0 0 0;
 }
 
-.navbar-sisu-outer {
+.navbar-sisu, .welcome-message {
+    height: 75px;
     display: flex;
     justify-content: flex-start;
+    align-items: center;
     font-size: 12px;
     padding-bottom: 5px;
+
+    position: absolute;
+    left: 0;
 }
 
-.navbar-sisu-outer a {
-    text-decoration: none;
-}
-
-.navbar-sisu-outer a:hover {
-    text-decoration: none;
-    color: #007b00;
-    transition: .4s;
-}
-
-.nav-signup {
-    padding-right: 10px;
+.nav-signup, .nav-login {
+    margin-left: 10px;
     padding-left: 10px;
+    cursor: pointer;
 }
 
-.nav-login {
-    padding-right: 10px;
+.nav-signup:hover, .nav-login:hover, .nav-logout:hover {
+    color: green;
 }
+
+.welcome-message > h1 {
+    margin-left: 20px;
+    text-transform: uppercase;
+    font-size: 15px;
+}
+
+.logout-container {
+    position: absolute;
+    right: 0;
+    height: 75px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+}
+
+.nav-logout {
+    margin-right: 10px;
+}
+

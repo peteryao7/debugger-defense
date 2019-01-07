@@ -15,14 +15,22 @@ class NavBar extends React.Component {
   getLinks() {
       if (this.props.loggedIn) {
         return (
-            <div>
-                <h1>Welcome, {this.props.currentUser.username}!</h1>
-                <button onClick={this.logoutUser}>Logout</button>
+            <div className="navbar-container">
+                <div className="welcome-message">
+                    <h1>Welcome, {this.props.currentUser.username}!</h1>
+                </div>
+                <div className="navbar-title">
+                    <div>Debugger Defense</div>
+                </div>
+                <div className="logout-container">
+                    <div className="nav-logout" onClick={this.logoutUser}>Logout</div>
+                </div>
             </div>
         );
       } else {
         return (
-            <div className="navbar-sisu-outer">
+            <div className="navbar-container">
+            <div className="navbar-sisu">
                 <div className="nav-signup"
                     onClick={() => this.props.openModal("signup")}>
                     Signup
@@ -32,16 +40,17 @@ class NavBar extends React.Component {
                     Login
                </div>
             </div>
+            <div className="navbar-title">
+                <div>Debugger Defense</div>
+            </div>
+            </div>
         );
       }
   }
 
   render() {
       return (
-        <div className="navbar-container">
-            <div className="navbar-title">Debugger Defense</div>
-            <div className="navbar-sisu-inner">{this.getLinks()}</div>
-        </div>
+         this.getLinks()
       );
   }
 }
