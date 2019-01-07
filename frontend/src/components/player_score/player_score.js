@@ -6,7 +6,7 @@ class PlayerScore extends React.Component {
 
         this.state = {}
     }
-    
+
     componentDidMount() {
         debugger;
         this.props.fetchSingleScore(this.props.currentUsername);
@@ -15,11 +15,13 @@ class PlayerScore extends React.Component {
     componentDidUpdate() {
         //update if the player's current score is greater than their highest score?
     }
-    
+
     render() {
-        return (
-            <div>Player's High Score: 10000 </div>
-        )
+        if (!this.props.highestScore) {
+            return <div>Play more to get a high score!</div>
+        } else {
+            return <div>{this.props.currentUsername}'s High Score: {this.props.highestScore.score} </div>
+        }
     }
 }
 
