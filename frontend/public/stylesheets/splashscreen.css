@@ -1,0 +1,36 @@
+.splash-screen {
+  width: 80vw;
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+
+  background: black;
+  color: white;
+}
+
+.instructions {
+  width: 800px;
+}
+
+.instructions > h1 { 
+  text-transform: uppercase;
+  font-size: 30px;
+}
+
+.start-button {
+  width: 25%;
+  height: 10%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-transform: uppercase;
+
+  cursor: pointer;
+  background: black;
+}
+
+.start-button:hover {
+  background: green;
+}

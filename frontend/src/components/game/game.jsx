@@ -1,15 +1,18 @@
 import React from 'react';
 import GamePlay from "../../gameplay/gameplay";
+import Splashscreen from "./splashscreen";
+import PlayerScoreContainer from "../player_score/player_score_container"
 
 class Game extends React.Component {
     constructor(props) {
         super(props)
 
-        this.initializeGame = this.initializeGame.bind(this)
-    }
+        this.state = {
+            playing: false
+        }
 
-    componentDidMount() {
-        requestAnimationFrame(this.initializeGame)
+        this.startPlaying = this.startPlaying.bind(this);
+        this.initializeGame = this.initializeGame.bind(this)
     }
 
     initializeGame() {
@@ -18,13 +21,32 @@ class Game extends React.Component {
         new GamePlay(this.props.currentUsername, ctx, this.props.createScore)
     }
 
+    startPlaying() {
+        this.setState({ playing: true })
+    }
+
     render() {
-        return (
-             <div className="canvas-restart-container">
-                <canvas ref="canvas" width={1000} height={600} />
-                <button onClick={this.initializeGame}>Restart</button>
-            </div >
-        )
+        if (this.state.playing) {
+            requestAnimationFrame(this.initializeGame)
+            return (
+                <div className="canvas-restart-container">
+                    <canvas ref="canvas" width={1000} height={600} />
+                    
+                    <div className="game-footer">
+                        <div className="restart-button" onClick={this.initializeGame}>
+                            <div>Restart</div>
+                        </div>
+                        <PlayerScoreContainer />
+                    </div>
+                    
+                </div >
+            )
+        } else {
+            return (
+                <Splashscreen startPlaying={this.startPlaying}/>
+            )
+        }
+
     }
 }
 

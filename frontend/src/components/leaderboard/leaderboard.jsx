@@ -7,6 +7,10 @@ class LeaderBoard extends React.Component {
     }
 
     componentDidMount() {
+<<<<<<< HEAD
+=======
+        //fetch scores from all users (if we want scroll) otherwise top 10-50
+>>>>>>> 0c2042907d9cc3901deb46f98e7061fbe2fd16b3
         this.props.fetchScores();
     }
 
@@ -29,7 +33,7 @@ class LeaderBoard extends React.Component {
         }
 
         return (
-            <div className="leaderboard-inner-div">
+            <div className="leaderboard-container">
                 <h5>Leaderboard</h5>
                 <ul className="leaderboard-score-list">{this.formatScores()}</ul>
             </div>

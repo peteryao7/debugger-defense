@@ -33,7 +33,7 @@ router.post("/createScore", (req, res) => {
   })
     .save()
     .then(newScore => {
-      res.json( newScore );
+      res.json(newScore);
     });
 });
 

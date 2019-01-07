@@ -1,36 +1,13 @@
-.main-inner-container {
+.main-outer-container {
+    background: lightgrey;
     font-family: 'Press Start 2P', cursive;
     display: flex;
 }
 
-.game-player-score-box {
+.game-box {
     display: flex;
     flex-direction: column;
-}
-
-.player-score-container {
-    display: flex;
-    justify-content: center;
-    padding: 10px;
-}
-
-.leaderboard-container {
-    display: flex;
-    justify-content: center;
-    width: 20vw;
-    height: 90vh;
-    background: #d0d0d0;
-}
-
-
-.canvas-restart-container {
-    display: flex;
-    flex-direction: column;
-}
-
-canvas {
-    width: 80vw;
-    height: 80vh;
+    margin: 10px;
 }
 
 footer.footer {

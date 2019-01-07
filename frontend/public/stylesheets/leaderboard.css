@@ -1,10 +1,10 @@
-
-.leaderboard-inner-div {
-    width: 90%;
+.leaderboard-container {
     display: flex;
     flex-direction: column;
     align-items: center;
     background: white;
+    margin: 10px;
+    right: 0;
 }
 
 h5 {

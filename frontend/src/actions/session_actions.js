@@ -9,7 +9,7 @@ export const receiveCurrentUser = currentUser => ({
     type: RECEIVE_CURRENT_USER,
     currentUser
 });
-  
+
 export const receiveErrors = errors => ({
     type: RECEIVE_SESSION_ERRORS,
     errors
@@ -31,9 +31,9 @@ export const login = user => dispatch => (
     APIUtil.login(user).then(res => {
         return dispatch(receiveCurrentUser(processToken(res)))
     })
-    .catch(err => {
-        dispatch(receiveErrors(err.response.data));
-    })
+        .catch(err => {
+            dispatch(receiveErrors(err.response.data));
+        })
 )
 
 export const logout = () => dispatch => {

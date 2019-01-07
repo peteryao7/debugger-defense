@@ -163,7 +163,7 @@ class GamePlay {
     ctx.font = "20px Comic Sans";
     ctx.fillText(
       `Score: ${this.score} Seconds Elapsed: ${this.elapsedTime} Kill count: ${this.killCount} Level: ${
-        this.difficulty
+      this.difficulty
       } Lives: ${this.lives}`,
       200,
       200
