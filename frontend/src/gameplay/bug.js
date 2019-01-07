@@ -18,12 +18,13 @@ class Bug {
 
         this.position = [xPos, yPos]
         this.speed = (Math.random() * 2000) + 100;
-        this.radius = 20;
+        this.radius = 45;
         this.xDiff = 1000 - this.position[0];
         this.yDiff = 600 - this.position[1];
         this.word = getRandomWord(difficulty);
         this.image = bugImage;
-
+        this.timeDrawn = (new Date()).getTime();
+        this.currentFrame = 0;
     }
 
     draw(ctx) {
@@ -31,14 +32,18 @@ class Bug {
         this.drawWord(ctx)
     }
 
-    updateFrame(ctx) {
-        ctx.drawImage(this.image, 160, 0, 160, 160, this.position[0], this.position[1], 90, 90)
+    drawBug(ctx) {
+        if (this.currentFrame % 20 === 0) {
+            ctx.drawImage(this.image, 0, 0, 160, 160, this.position[0], this.position[1], 90, 90);
+            this.currentFrame += 1;
+        } else {
+            ctx.drawImage(this.image, 160, 0, 160, 160, this.position[0], this.position[1], 90, 90)
+            this.currentFrame += 1;
+        }
     }
 
-    drawBug(ctx) {
-        ctx.drawImage(this.image, 0, 0, 160, 160, this.position[0], this.position[1], 90, 90);
-        // setInterval(() => this.updateFrame(ctx), 100)
-        //setinterval not working for anim currently
+    setUpdateInterval(ctx) {
+        setInterval(() => this.updateFrame(ctx), 100)
     }
 
     drawWord(ctx) {
@@ -48,8 +53,8 @@ class Bug {
     }
 
     move() {
-        this.position[0] += this.xDiff / this.speed;
-        this.position[1] += this.yDiff / this.speed;
+        this.position[0] += (this.xDiff - 90) / this.speed;
+        this.position[1] += (this.yDiff - 90) / this.speed;
     }
 
 }
