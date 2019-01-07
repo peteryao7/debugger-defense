@@ -6,7 +6,6 @@ import LeaderBoardContainer from '../leaderboard/leaderboard_container';
 class MainPage extends React.Component {
   
   render() {
-    // debugger
     return (
       <div className="main-outer-container">
         <div className="main-inner-container">

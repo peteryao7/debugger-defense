@@ -1,4 +1,3 @@
-// import Word from 'word';
 import { getRandomWord } from "../user-input/user_input";
 
 const bugImage = new Image();

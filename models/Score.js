@@ -20,12 +20,4 @@ const ScoreSchema = new Schema({
     }
 })
 
-// CLASS
-// ScoreSchema.statics.name = function () {
-// code here
-// }
-
-// INSTANCE
-// SCoreSchema.methods.name... 
-
 module.exports = Score = mongoose.model('scores', ScoreSchema);

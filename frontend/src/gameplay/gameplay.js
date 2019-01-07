@@ -1,11 +1,8 @@
 import Bug from "./bug";
 import Util from "./util";
 
-//needs to be passed the context from "../components/game", right?
-
 class GamePlay {
   constructor(currentUsername, ctx, createScore) {
-    // debugger;
     this.currentUsername = currentUsername;
     this.ctx = ctx;
     this.destination = [970, 570];
@@ -108,24 +105,24 @@ class GamePlay {
   }
 
   incrementDifficulty() {
-    if (this.killCount === 5) {
-      this.difficulty = 2;
-    } else if (this.killCount >= 10) {
-      this.difficulty = 3;
-    } else if (this.killCount >= 15) {
-      this.difficulty = 4;
-    } else if (this.killCount >= 20) {
-      this.difficulty = 5;
-    } else if (this.killCount >= 100) {
-      this.difficulty = 6;
-    } else if (this.killCount >= 120) {
-      this.difficulty = 7;
-    } else if (this.killCount >= 140) {
-      this.difficulty = 8;
-    } else if (this.killCount >= 160) {
-      this.difficulty = 9;
-    } else if (this.killCount >= 180) {
+    if (this.killCount >= 160) {
       this.difficulty = 10;
+    } else if (this.killCount >= 140) {
+      this.difficulty = 9;
+    } else if (this.killCount >= 120) {
+      this.difficulty = 8;
+    } else if (this.killCount >= 100) {
+      this.difficulty = 7;
+    } else if (this.killCount >= 80) {
+      this.difficulty = 6;
+    } else if (this.killCount >= 60) {
+      this.difficulty = 4;
+    } else if (this.killCount >= 40) {
+      this.difficulty = 3;
+    } else if (this.killCount > 20) {
+      this.difficulty = 2;
+    } else if (this.killCount <= 20) {
+      this.difficulty = 1;
     }
   }
 

@@ -21,7 +21,6 @@ export const logoutUser = () => ({
 
 export const signup = user => dispatch => (
     APIUtil.signup(user).then((res) => {
-        debugger;
         return dispatch(receiveCurrentUser(processToken(res)))
     }, err => (
         dispatch(receiveErrors(err.response.data))
@@ -44,7 +43,6 @@ export const logout = () => dispatch => {
 };
 
 const processToken = (routerRes) => {
-    debugger
     const { token } = routerRes.data;
     const username = JSON.parse(routerRes.config.data).username;
 
