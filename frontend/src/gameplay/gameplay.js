@@ -83,8 +83,11 @@ class GamePlay {
   }
 
   detectCollision() {
+    const bugCenter = new Array(2);
     this.bugs.forEach((bug, i) => {
-      const distBetweenCenters = Util.distance(bug.position, this.destination);
+      bugCenter[0] = bug.position[0] + 45;
+      bugCenter[1] = bug.position[1] + 45;
+      const distBetweenCenters = Util.distance(bugCenter, this.destination);
       if (distBetweenCenters < bug.radius + 20) {
         this.bugs.splice(i, 1);
         this.lives -= 1;
@@ -127,7 +130,7 @@ class GamePlay {
   }
 
   moreBugs() {
-    this.bugs.push(new Bug(this.difficulty));
+    this.bugs.push(new Bug(this.difficulty, this.startingTime));
   }
 
   draw(ctx) {
