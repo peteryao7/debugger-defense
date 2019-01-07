@@ -18,7 +18,7 @@ class LeaderBoard extends React.Component {
 
     formatScores() {
         const formatted = this.props.scores.map(score => {
-            return (<li key={score._id} className="leaderboard-single-score">{score.username}: {score.score}</li>)
+            return (<li key={score._id} className="leaderboard-single-score">{score.username}: {score.score}, {score.secondsElapsed} seconds</li>)
         }
         )
         return formatted;
