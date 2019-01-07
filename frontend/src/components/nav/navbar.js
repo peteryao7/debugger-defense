@@ -14,7 +14,6 @@ class NavBar extends React.Component {
 
   getLinks() {
       if (this.props.loggedIn) {
-          debugger
         return (
             <div>
                 <h1>Welcome, {this.props.currentUser.username}!</h1>

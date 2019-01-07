@@ -10,6 +10,7 @@ const mapStateToProps = (state) => {
     currentUsername = state.session.user.username;
   }
   return {
+    
     currentUsername
   };
 };
