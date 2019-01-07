@@ -4,7 +4,7 @@ const bugImage = new Image();
 bugImage.src = 'game/Bug_4_160.png'
 
 class Bug {
-    constructor(difficulty) {
+    constructor(difficulty, startingTime) {
         let xPos, yPos;
 
         if (Math.random() > .5) {
@@ -27,7 +27,7 @@ class Bug {
         this.frameHeight = 160;
         this.totalFrames = 4;
         this.currentFrame = 0;
-        this.getTime = (new Date()).getSeconds();
+        this.getTime = Date.now();
     }
 
     draw(ctx) {
