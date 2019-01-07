@@ -17,12 +17,12 @@ class NavBar extends React.Component {
         return (
             <div>
                 <h1>Welcome, {this.props.currentUser.username}!</h1>
-                <button onClick={this.logoutUser}>Logout</button>
+                <div onClick={this.logoutUser}>Logout</div>
             </div>
         );
       } else {
         return (
-            <div className="navbar-sisu-outer">
+            <div className="navbar-sisu">
                 <div className="nav-signup"
                     onClick={() => this.props.openModal("signup")}>
                     Signup
@@ -39,8 +39,10 @@ class NavBar extends React.Component {
   render() {
       return (
         <div className="navbar-container">
-            <div className="navbar-title">Debugger Defense</div>
-            <div className="navbar-sisu-inner">{this.getLinks()}</div>
+            {this.getLinks()}
+            <div className="navbar-title">
+                  <div>Debugger Defense</div>
+            </div>
         </div>
       );
   }
