@@ -5,7 +5,7 @@ const bugImage = new Image();
 bugImage.src = 'game/Bug_4_160.png'
 
 class Bug {
-    constructor(difficulty) {
+    constructor(difficulty, gameStartTime) {
         let xPos, yPos;
 
         if (Math.random() > .5) {
@@ -22,13 +22,12 @@ class Bug {
         this.xDiff = 1000 - this.position[0];
         this.yDiff = 600 - this.position[1];
         this.word = getRandomWord(difficulty);
+        
         this.image = bugImage;
-        this.shift = 0;
         this.frameWidth = 160;
         this.frameHeight = 160;
-        this.totalFrames = 4;
-        this.currentFrame = 0;
-        this.getTime = (new Date()).getSeconds();
+        this.gameStartTime = gameStartTime;
+        this.elapsedTime = null;
     }
 
     draw(ctx) {
@@ -37,14 +36,29 @@ class Bug {
     }
 
     drawBug(ctx) {
-        ctx.drawImage(this.image, this.shift, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
-        this.shift += this.frameWidth + 1;
+        // ctx.drawImage(this.image, this.shift, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
+
+        // if ( (this.getTime - this.gameStartTime) % 1000 <= 250) {
+        //     this.shift += this.frameWidth + 1;
+        //     ctx.drawImage(this.image, this.shift, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
+        // }
         
-        if (this.currentFrame === this.totalFrames) {
-            this.shift = 0;
-            this.currentFrame = 0;
+        // if (this.currentFrame === this.totalFrames) {
+        //     this.shift = 0;
+        //     this.currentFrame = 0;
+        // }
+        // this.currentFrame += 1;
+        this.elapsedTime = Date.now() - this.gameStartTime;
+
+        if ((this.elapsedTime % 1000) <= 250) {
+            ctx.drawImage(this.image, 0, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
+        } else if ((this.elapsedTime % 1000) <= 500) {
+            ctx.drawImage(this.image, 160, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
+        } else if ((this.elapsedTime % 1000 )<= 750) {
+            ctx.drawImage(this.image, 320, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
+        } else if ((this.elapsedTime % 1000) <= 999 ){
+            ctx.drawImage(this.image, 480, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
         }
-        this.currentFrame += 1;
     }
 
     drawWord(ctx) {

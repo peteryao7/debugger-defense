@@ -12,14 +12,14 @@ class GamePlay {
     this.difficulty = 1;
     this.killCount = 0;
     this.lives = 20;
-    this.bugs = new Array(5).fill().map(el => new Bug(this.difficulty));
     this.score = 0;
     this.secondsElapsed = 0;
     this.startingTime = 0;
 
     this.startingTime = Date.now();
     this.elapsedTime = null;
-
+    
+    this.bugs = new Array(5).fill().map(el => new Bug(this.difficulty, this.startingTime));
     this.createScore = createScore;
 
     this.parse();
@@ -130,7 +130,7 @@ class GamePlay {
   }
 
   moreBugs() {
-    this.bugs.push(new Bug(this.difficulty));
+    this.bugs.push(new Bug(this.difficulty, this.startingTime));
   }
 
   draw(ctx) {
