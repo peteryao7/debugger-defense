@@ -2,15 +2,17 @@
   width: 80vw;
   height: 80vh;
   display: flex;
-  justify-content: center;
+  flex-direction: column;
+  justify-content: space-around;
   align-items: center;
 
   margin: 10px;
-  background: red;
+  background: black;
+  color: white;
 }
 
 .instructions {
-  
+  width: 800px;
 }
 
 .start-button {
@@ -22,7 +24,7 @@
   text-transform: uppercase;
 
   cursor: pointer;
-  background: blue;
+  background: black;
 }
 
 .start-button:hover {
