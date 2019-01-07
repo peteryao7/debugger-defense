@@ -37,12 +37,14 @@ a {
 .nav-signup {
     padding-right: 10px;
     padding-left: 10px;
-}
-
-.nav-signup:hover {
-    color:
+    cursor: pointer;
 }
 
 .nav-login {
     padding-right: 10px;
+    cursor: pointer;
+}
+
+.nav-signup:hover, .nav-login:hover {
+    color: green;
 }
