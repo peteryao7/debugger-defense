@@ -18,7 +18,7 @@ class Bug {
 
         this.position = [xPos, yPos]
         this.speed = (Math.random() * 2000) + 100;
-        this.radius = 20;
+        this.radius = 45;
         this.xDiff = 1000 - this.position[0];
         this.yDiff = 600 - this.position[1];
         this.word = getRandomWord(difficulty);
@@ -48,8 +48,8 @@ class Bug {
     }
 
     move() {
-        this.position[0] += this.xDiff / this.speed;
-        this.position[1] += this.yDiff / this.speed;
+        this.position[0] += (this.xDiff - 90) / this.speed;
+        this.position[1] += (this.yDiff - 90) / this.speed;
     }
 
 }
