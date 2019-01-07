@@ -42,7 +42,7 @@ export const login = user => dispatch => (
 
         APIUtil.setAuthToken(token);
         const decoded = jwt_decode(token);
-        const user = Object.assign({}, decoded, username); 
+        const user = Object.assign({}, decoded, { username }); 
         dispatch(receiveCurrentUser(user))
     })
     .catch(err => {

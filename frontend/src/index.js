@@ -14,6 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Set the token as a common header for all axios requests
     setAuthToken(localStorage.jwtToken);
     const decodedUser = jwt_decode(localStorage.jwtToken);
+
     decodedUser.username = localStorage.username
     const preloadedState = { session: { isAuthenticated: true, user: decodedUser } };
 
