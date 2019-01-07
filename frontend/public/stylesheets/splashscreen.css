@@ -6,13 +6,17 @@
   justify-content: space-around;
   align-items: center;
 
-  margin: 10px;
   background: black;
   color: white;
 }
 
 .instructions {
   width: 800px;
+}
+
+.instructions > h1 { 
+  text-transform: uppercase;
+  font-size: 30px;
 }
 
 .start-button {

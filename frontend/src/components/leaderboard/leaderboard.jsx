@@ -34,7 +34,7 @@ class LeaderBoard extends React.Component {
         }
 
         return (
-            <div className="leaderboard-inner-div">
+            <div className="leaderboard-container">
                 <h5>Leaderboard</h5>
                 <ul className="leaderboard-score-list">{this.formatScores()}</ul>
             </div>

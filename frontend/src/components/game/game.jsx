@@ -1,6 +1,7 @@
 import React from 'react';
 import GamePlay from "../../gameplay/gameplay";
 import Splashscreen from "./splashscreen";
+import PlayerScoreContainer from "../player_score/player_score_container"
 
 class Game extends React.Component {
     constructor(props) {
@@ -30,7 +31,14 @@ class Game extends React.Component {
             return (
                 <div className="canvas-restart-container">
                     <canvas ref="canvas" width={1000} height={600} />
-                    <button onClick={this.initializeGame}>Restart</button>
+                    
+                    <div className="game-footer">
+                        <div className="restart-button" onClick={this.initializeGame}>
+                            <div>Restart</div>
+                        </div>
+                        <PlayerScoreContainer />
+                    </div>
+                    
                 </div >
             )
         } else {
