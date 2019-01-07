@@ -4,15 +4,14 @@ import Util from "./util";
 //needs to be passed the context from "../components/game", right?
 
 class GamePlay {
-    constructor (currentUsername, ctx, createScore) {
-        // debugger;
+    constructor(currentUsername, ctx, createScore) {
         this.currentUsername = currentUsername;
         this.ctx = ctx;
         this.destination = [970, 570]
         this.difficulty = 1;
         this.killCount = 0
         this.lives = 1;
-        this.bugs = new Array(5).fill().map( el => (
+        this.bugs = new Array(5).fill().map(el => (
             new Bug(this.difficulty)
         ))
         this.score = 0;
@@ -46,7 +45,7 @@ class GamePlay {
         this.incrementDifficulty();
         this.draw(this.ctx);
         this.step()
-        
+
         // randomly adds bugs
         let x = Math.random()
         if (x < .02 && this.bugs.length < 20) {
@@ -57,7 +56,7 @@ class GamePlay {
             requestAnimationFrame(this.animate.bind(this));
         } else {
             this.gameOver();
-            this.createScore({score: this.score, secondsElapsed: 10, username: this.currentUsername});
+            this.createScore({ score: this.score, secondsElapsed: 10, username: this.currentUsername });
         }
     }
 
@@ -68,13 +67,13 @@ class GamePlay {
     }
 
     step() {
-        this.bugs.forEach( bug => {
+        this.bugs.forEach(bug => {
             bug.move()
         })
     }
 
     detectCollision() {
-        this.bugs.forEach( (bug, i) => {
+        this.bugs.forEach((bug, i) => {
             const distBetweenCenters = Util.distance(bug.position, this.destination)
             if (distBetweenCenters < bug.radius + 20) {
                 this.bugs.splice(i, 1)
