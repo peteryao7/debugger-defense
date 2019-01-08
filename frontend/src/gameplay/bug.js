@@ -27,7 +27,6 @@ class Bug {
     this.frameWidth = 160;
     this.frameHeight = 160;
     this.gameStartTime = gameStartTime;
-    this.elapsedTime = null;
   }
 
   draw(ctx) {
@@ -36,9 +35,9 @@ class Bug {
   }
 
   drawBug(ctx) {
-    this.elapsedTime = Date.now() - this.gameStartTime;
+    const elapsedTime = Date.now() - this.gameStartTime;
 
-    if (this.elapsedTime % 1000 <= 250) {
+    if (elapsedTime % 1000 <= 250) {
       ctx.drawImage(
         this.image,
         0,
@@ -50,7 +49,7 @@ class Bug {
         90,
         90
       );
-    } else if (this.elapsedTime % 1000 <= 500) {
+    } else if (elapsedTime % 1000 <= 500) {
       ctx.drawImage(
         this.image,
         160,
@@ -62,7 +61,7 @@ class Bug {
         90,
         90
       );
-    } else if (this.elapsedTime % 1000 <= 750) {
+    } else if (elapsedTime % 1000 <= 750) {
       ctx.drawImage(
         this.image,
         320,
@@ -74,7 +73,7 @@ class Bug {
         90,
         90
       );
-    } else if (this.elapsedTime % 1000 <= 999) {
+    } else if (elapsedTime % 1000 <= 999) {
       ctx.drawImage(
         this.image,
         480,
