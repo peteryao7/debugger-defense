@@ -42,9 +42,9 @@ class Bug {
             ctx.drawImage(this.image, 0, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
         } else if ((this.elapsedTime % 1000) <= 500) {
             ctx.drawImage(this.image, 160, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
-        } else if ((this.elapsedTime % 1000 )<= 750) {
+        } else if ((this.elapsedTime % 1000) <= 750) {
             ctx.drawImage(this.image, 320, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
-        } else if ((this.elapsedTime % 1000) <= 999 ){
+        } else if ((this.elapsedTime % 1000) <= 999) {
             ctx.drawImage(this.image, 480, 0, this.frameWidth, this.frameHeight, this.position[0], this.position[1], 90, 90)
         }
     }
@@ -64,8 +64,8 @@ class Bug {
     }
 
     move() {
-        this.position[0] += (this.xDiff-45) / this.speed; // 45 is half of size of bug
-        this.position[1] += (this.yDiff-45) / this.speed;
+        this.position[0] += (this.xDiff - 45) / this.speed; // 45 is half of size of bug
+        this.position[1] += (this.yDiff - 45) / this.speed;
     }
 
 }
