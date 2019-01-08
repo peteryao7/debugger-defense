@@ -34,6 +34,8 @@ class GamePlay {
 
     this.parse();
     this.animate();
+
+    this.drawDeath = this.drawDeath.bind(this);
   }
 
   parse() {
@@ -71,7 +73,6 @@ class GamePlay {
 
     if (this.lives > 0) {
       this.elapsedTime = Math.floor((Date.now() - this.startingTime) / 1000);
-
       requestAnimationFrame(this.animate.bind(this));
     } else {
       this.gameOver();
@@ -117,7 +118,7 @@ class GamePlay {
     if (this.bugs.length > 0) {
       this.bugs.forEach((bug, i) => {
         if (bug.word[bug.word.length - 1] === "_") {
-          this.deaths.push(new Explosion(this.elapsedTime, bug.position))
+          this.deaths.push(new Explosion(bug.position))
           this.bugs.splice(i, 1);   
           this.killCount += 1;
           this.score += 100 * this.difficulty;
@@ -157,7 +158,7 @@ class GamePlay {
     this.drawPlayerInfo(ctx);
     this.drawDestination(ctx);
     this.drawBugs(ctx);
-    this.drawDeath(this.ctx);  
+    this.drawDeath(ctx);  
   }
 
   drawBackground(ctx) {
@@ -174,14 +175,15 @@ class GamePlay {
 
   drawDeath(ctx) {
     this.deaths.forEach(death => {
-      death.draw(ctx, this.elapsedTime);
+      debugger
+      death.draw(ctx);
     });
   }
 
   drawDestination(ctx) {
-    this.elapsedTime = Date.now() - this.startingTime;
+    const elapsedTime = Date.now() - this.startingTime;
 
-    if (this.elapsedTime % 1000 < 500) {
+    if (elapsedTime % 1000 < 500) {
       ctx.drawImage(this.destinationImage, 0, 0, 224, 224, 720, 385, 320, 320)
     } else {
       ctx.drawImage(this.destinationImage, 256, 0, 224, 224, 720, 385, 320, 320)

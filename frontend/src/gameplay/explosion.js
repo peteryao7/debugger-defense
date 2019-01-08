@@ -3,71 +3,38 @@ const explosion = new Image();
 explosion.src = '/game/explosion.png'
 
 class Explosion {
-    constructor(startTime, position) {
-        this.startTime = startTime;
+    constructor(position) {
+        this.startTime = Date.now();
         this.elapsedTime = null;
         this.position = position;
         this.doneExploding = false;
         this.explosion = explosion;
     }
 
-    draw(ctx, currentSeconds) {
-        debugger
-        this.elapsedTime = currentSeconds - this.startTime;
-        if (( this.elapsedTime ) > 500) {
+    draw(ctx) {
+        const elapsedTime = Date.now() - this.startTime;
+        if (( elapsedTime ) > 500) {
             this.doneExploding = true;
         }
-        
-        if (this.elapsedTime % 1000 <= 250) {
-             ctx.drawImage(
-                this.explosion,
-                0,
-                0,
-                128,
-                128, 
-                this.position[0], 
-                this.position[1],
-                128,
-                128
-            );
-        } else if (this.elapsedTime % 1000 <= 500) {
+       
+        // hardcoded position of explosion relative to bug's position
+        // don't really know why position - 30 words, but it does
+        if (elapsedTime < 125 ) {
             ctx.drawImage(
-                this.explosion,
-                128,
-                0,
-                128,
-                128,
-                this.position[0],
-                this.position[1],
-                128,
-                128
+                this.explosion, 0, 0, 160, 160, this.position[0] - 30, this.position[1] - 30, 160, 160
             );
-            
-        } else if (this.elapsedTime % 1000 <= 750) {
+        } else if (elapsedTime < 250) {
             ctx.drawImage(
-                this.explosion,
-                (128 * 3),
-                0,
-                128,
-                128,
-                this.position[0],
-                this.position[1],
-                128,
-                128
+                this.explosion, 160, 0, 160, 160, this.position[0] - 30, this.position[1] - 30, 160, 160
             );
-           
-        } else if (this.elapsedTime % 1000 <= 999) {
+        } else if (elapsedTime < 375) {
             ctx.drawImage(
-                this.explosion,
-                (128 * 4),
-                0,
-                128,
-                128,
-                this.position[0],
-                this.position[1],
-                128,
-                128
-            ); 
+                this.explosion, 320, 0, 160, 160, this.position[0] - 30, this.position[1] - 30, 160, 160
+            );
+        } else if (elapsedTime < 500) {
+            ctx.drawImage(
+                this.explosion, 580, 0, 160, 160, this.position[0] - 30, this.position[1] - 30, 160, 160
+            );
         }
     }
 
