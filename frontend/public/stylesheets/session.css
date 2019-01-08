@@ -1,7 +1,7 @@
 /* LOGIN BELOW */
 .session-modal-box{
   width: 400px;
-  height: 300px;
+  min-height: 300px;
   padding: 10px;
   background: #DCDCDC;
   border-radius: 10px;
@@ -54,4 +54,11 @@
 
 .session-button:hover {
   background: gray;
+}
+
+.session-errors {
+  position: absolute;
+  right: 10px;
+  bottom: 25px;
+  color: red;
 }

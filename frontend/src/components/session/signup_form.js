@@ -36,7 +36,6 @@ class SignupForm extends React.Component {
     };
 
     this.props.signup(user, this.props.history)
-      .then( () => this.props.closeModal()); 
   }
 
   renderErrors() {
@@ -90,9 +89,11 @@ class SignupForm extends React.Component {
               />
               <br />
               <input className="session-button" type="submit" value="Submit" />
-              {this.renderErrors()}
             </div>
           </form>
+          <div className="session-errors">
+            {this.renderErrors()}
+          </div>
         </div>
         
       </div>
