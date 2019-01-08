@@ -1,7 +1,13 @@
+.full-app {
+    min-height: 100vh;
+    background: lightgrey;
+}
+
 .main-outer-container {
     background: lightgrey;
     font-family: 'Press Start 2P', cursive;
     display: flex;
+    justify-content: space-around;
 }
 
 .game-box {

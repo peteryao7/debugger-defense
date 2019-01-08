@@ -17,7 +17,7 @@ class Bug {
 
     this.difficulty = difficulty;
     this.position = [xPos, yPos];
-    this.speed = Math.random() * 2000 + 100;
+    this.speed = Math.random() * (2000 - 500) + 500;
     this.radius = 45;
     this.xDiff = 970 - this.position[0]; // destination position - bug's starting position
     this.yDiff = 570 - this.position[1];
@@ -102,42 +102,44 @@ class Bug {
     if (wordLength <= 70) {
       rectX = this.position[0] - 5;
       rectWidth = 100;
-    }
-    else if (wordLength <= 90) {
-      rectX = this.position[0]-15;
+    } else if (wordLength <= 90) {
+      rectX = this.position[0] - 15;
       rectWidth = 120;
-    }
-    else if (wordLength <= 110) {
+    } else if (wordLength <= 110) {
       rectX = this.position[0] - 25;
       rectWidth = 140;
-    }
-    else if (wordLength <= 130) {
+    } else if (wordLength <= 130) {
       rectX = this.position[0] - 35;
       rectWidth = 160;
-    }
-    else if (wordLength <= 150) {
+    } else if (wordLength <= 150) {
       rectX = this.position[0] - 45;
       rectWidth = 180;
-    }
-    else if (wordLength <= 170) {
+    } else if (wordLength <= 170) {
       rectX = this.position[0] - 55;
       rectWidth = 200;
-    }
-    else if (wordLength <= 190) {
+    } else if (wordLength <= 190) {
       rectX = this.position[0] - 65;
       rectWidth = 220;
-    }
-    else if (wordLength <= 210) {
+    } else if (wordLength <= 210) {
       rectX = this.position[0] - 75;
       rectWidth = 240;
-    }
-    else if (wordLength <= 230) {
+    } else if (wordLength <= 230) {
       rectX = this.position[0] - 85;
       rectWidth = 260;
     }
 
-    ctx.strokeRect(rectX + cornerRadius / 2, rectY + cornerRadius / 2, rectWidth - cornerRadius, rectHeight - cornerRadius);
-    ctx.fillRect(rectX + cornerRadius / 2, rectY + cornerRadius / 2, rectWidth - cornerRadius, rectHeight - cornerRadius);
+    ctx.strokeRect(
+      rectX + cornerRadius / 2,
+      rectY + cornerRadius / 2,
+      rectWidth - cornerRadius,
+      rectHeight - cornerRadius
+    );
+    ctx.fillRect(
+      rectX + cornerRadius / 2,
+      rectY + cornerRadius / 2,
+      rectWidth - cornerRadius,
+      rectHeight - cornerRadius
+    );
   }
 
   drawWord(ctx) {
@@ -148,7 +150,7 @@ class Bug {
     this.drawWordBackground(ctx, wordLength);
 
     ctx.fillStyle = "black";
-    ctx.fillText(this.word, this.position[0] + 45, this.position[1] + 8)
+    ctx.fillText(this.word, this.position[0] + 45, this.position[1] + 8);
     ctx.textAlign = "start";
   }
 

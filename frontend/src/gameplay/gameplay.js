@@ -4,6 +4,9 @@ import Util from "./util";
 const background = new Image();
 background.src = '/game/circuitboard.png';
 
+const destinationImage = new Image();
+destinationImage.src = '/game/Prod_256.png';
+
 class GamePlay {
   constructor(currentUsername, ctx, createScore) {
     this.currentUsername = currentUsername;
@@ -16,6 +19,7 @@ class GamePlay {
     this.secondsElapsed = 0;
     this.startingTime = 0;
     this.background = background;
+    this.destinationImage = destinationImage;
 
     this.startingTime = Date.now();
     this.elapsedTime = null;
@@ -159,10 +163,16 @@ class GamePlay {
   }
 
   drawDestination(ctx) {
-    ctx.fillStyle = "red";
-    ctx.beginPath();
-    ctx.arc(this.destination[0], this.destination[1], 20, 0, 2 * Math.PI, true);
-    ctx.fill();
+    this.elapsedTime = Date.now() - this.startingTime;
+
+    if (this.elapsedTime % 1000 < 500) {
+      ctx.drawImage(this.destinationImage, 0, 0, 224, 224, 720, 385, 320, 320)
+    } else {
+      ctx.drawImage(this.destinationImage, 256, 0, 224, 224, 720, 385, 320, 320)
+    }
+    ctx.font = "12px 'Press Start 2P', cursive";
+    ctx.fillStyle = "black";
+    ctx.fillText("Production", 840, 545)
   }
 
   /*
