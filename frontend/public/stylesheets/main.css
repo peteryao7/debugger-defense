@@ -3,6 +3,8 @@
     font-family: 'Press Start 2P', cursive;
     display: flex;
     justify-content: space-around;
+
+    min-height: 100vh;
 }
 
 .game-box {
