@@ -41,3 +41,7 @@ li.leaderboard-single-score {
 .third-place{
     color: #CD7F32;
 }
+
+.score-info {
+    padding-left: 20px;
+}

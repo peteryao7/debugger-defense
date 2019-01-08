@@ -36,9 +36,9 @@ class LeaderBoard extends React.Component {
             <br/>
             {score.username} 
             <br/> 
-            {score.score} 
+            {score.score} points
             <br/> 
-            {score.secondsElapsed} sec
+            {score.secondsElapsed} seconds
             <div/>
             </div></li>)
         }

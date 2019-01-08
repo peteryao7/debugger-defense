@@ -5,7 +5,7 @@ import Modal from "./modal/modal"
 import MainPage from './main/main_page';
 
 const App = () => (
-  <div>
+  <div className="full-app">
     <Modal />
     <NavBarContainer />
     <MainPage />
