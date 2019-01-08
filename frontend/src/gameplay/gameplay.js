@@ -1,5 +1,6 @@
 import Bug from "./bug";
 import Util from "./util";
+import Explosion from './explosion';
 
 const background = new Image();
 background.src = '/game/circuitboard.png';
@@ -7,13 +8,15 @@ background.src = '/game/circuitboard.png';
 const destinationImage = new Image();
 destinationImage.src = '/game/Prod_256.png';
 
+
+
 class GamePlay {
   constructor(currentUsername, ctx, createScore) {
     this.currentUsername = currentUsername;
     this.ctx = ctx;
     this.destination = [970, 570];
-    this.difficulty = 1;
-    this.killCount = 0;
+    this.difficulty = 8;
+    this.killCount = 120;
     this.lives = 100;
     this.score = 0;
     this.secondsElapsed = 0;
@@ -21,10 +24,13 @@ class GamePlay {
     this.background = background;
     this.destinationImage = destinationImage;
 
+
     this.startingTime = Date.now();
     this.elapsedTime = null;
 
     this.bugs = new Array(5).fill().map(el => new Bug(this.difficulty, this.startingTime));
+    this.unkilledBugs = [];
+    this.deaths = [];
     this.createScore = createScore;
 
     this.parse();
@@ -66,28 +72,59 @@ class GamePlay {
 
     if (this.lives > 0) {
       this.elapsedTime = Math.floor((Date.now() - this.startingTime) / 1000);
-
       requestAnimationFrame(this.animate.bind(this));
     } else {
       this.gameOver();
       this.createScore({
         score: this.score,
-        secondsElapsed: this.elapsedTime,
+        secondsElapsed: Math.floor(
+          (Date.now() - this.startingTime) / 1000
+        ),
         username: this.currentUsername
       });
     }
   }
 
   gameOver() {
-    this.ctx.fillStyle = "red";
     this.ctx.font = "100px 'Press Start 2P', cursive";
-    this.ctx.fillText("GAME OVER", 50, 325);
+    this.ctx.fillStyle = "white";
+    this.ctx.fillRect(50, 50, 900, 500);
+    this.ctx.fillStyle = "red";
+    this.ctx.fillText("GAME OVER", 55, 200);
+    this.ctx.font = "30px 'Press Start 2P', cursive";
+    this.ctx.fillStyle = "black";
+    this.ctx.fillText("Words missed:", 325, 250);
+    this.ctx.font = "10px 'Press Start 2P', cursive";
+
+    let xVal = 97;
+    let yVal = 250;
+
+    for (let i = 0; i < this.unkilledBugs.length; i++) {
+      if (i % 5 === 0) {
+        yVal += 50;
+      }
+
+      if (i % 5 === 0) {
+        xVal = 97;
+      }
+      this.ctx.fillText(this.unkilledBugs[i].originalWord, xVal, yVal);
+      xVal += 175;
+    }
+
+    this.ctx.fillStyle = "red";
+    this.ctx.font = "20px 'Press Start 2P', cursive";
+    this.ctx.fillText("Your score has been submitted!", 200, 510)
   }
 
   step() {
     this.bugs.forEach(bug => {
       bug.move();
     });
+    this.deaths.forEach((death, i) => {
+      if (death.doneExploding) {
+        this.deaths.splice(i, 1)
+      }
+    })
   }
 
   detectCollision() {
@@ -97,7 +134,7 @@ class GamePlay {
       bugCenter[1] = bug.position[1] + 45;
       const distBetweenCenters = Util.distance(bugCenter, this.destination);
       if (distBetweenCenters < bug.radius) {
-        this.bugs.splice(i, 1);
+        this.unkilledBugs.push(this.bugs.splice(i, 1)[0]);
         this.lives -= 5;
       }
     });
@@ -107,6 +144,7 @@ class GamePlay {
     if (this.bugs.length > 0) {
       this.bugs.forEach((bug, i) => {
         if (bug.word[bug.word.length - 1] === "_") {
+          this.deaths.push(new Explosion(bug.position))
           this.bugs.splice(i, 1);
           this.killCount += 1;
           this.score += 100 * this.difficulty;
@@ -146,12 +184,11 @@ class GamePlay {
     this.drawPlayerInfo(ctx);
     this.drawDestination(ctx);
     this.drawBugs(ctx);
+    this.drawDeath(ctx);
   }
 
   drawBackground(ctx) {
-    // ctx.fillStyle = "blue";
     ctx.drawImage(this.background, 0, 0, 1000, 600)
-    // ctx.fillRect(0, 0, 1000, 600);
     ctx.fillStyle = "white";
     ctx.fillRect(0, 600, 1000, 630);
   }
@@ -162,10 +199,17 @@ class GamePlay {
     });
   }
 
-  drawDestination(ctx) {
-    this.elapsedTime = Date.now() - this.startingTime;
+  drawDeath(ctx) {
+    this.deaths.forEach(death => {
+      debugger
+      death.draw(ctx);
+    });
+  }
 
-    if (this.elapsedTime % 1000 < 500) {
+  drawDestination(ctx) {
+    const elapsedTime = Date.now() - this.startingTime;
+
+    if (elapsedTime % 1000 < 500) {
       ctx.drawImage(this.destinationImage, 0, 0, 224, 224, 720, 385, 320, 320)
     } else {
       ctx.drawImage(this.destinationImage, 256, 0, 224, 224, 720, 385, 320, 320)
@@ -193,7 +237,7 @@ class GamePlay {
     ctx.fillText(`Score: ${this.score}`, 600, 622);
 
     this.lives <= 25 ? ctx.fillStyle = "red" : ctx.fillStyle = "green"
-    ctx.fillText(`Lives: ${this.lives}`, 850, 622);
+    ctx.fillText(`Health: ${this.lives}`, 830, 622);
 
   }
 }
