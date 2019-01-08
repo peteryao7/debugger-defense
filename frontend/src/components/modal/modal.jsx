@@ -4,6 +4,7 @@ import { closeModal } from "../../actions/modal_actions";
 
 import SignupForm from "../session/signup_form_container";
 import LoginForm from "../session/login_form_container";
+import AboutUs from "../footer/aboutus";
 
 const Modal = ({ modal, closeModal}) => {
   if (!modal) {
@@ -17,6 +18,9 @@ const Modal = ({ modal, closeModal}) => {
       break;
     case "signup":
       component = <SignupForm />
+      break;
+    case "about":
+      component = <AboutUs />
       break;
     default:
       return null
