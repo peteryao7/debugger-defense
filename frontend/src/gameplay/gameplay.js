@@ -28,14 +28,13 @@ class GamePlay {
     
     this.bugs = new Array(5).fill().map(el => new Bug(this.difficulty, this.startingTime));
     this.ducks = [];
+    this.unkilledBugs = [];
     this.deaths = [];
     this.createScore = createScore;
 
     this.parse();
     this.duckParse();
     this.animate();
-
-    this.drawDeath = this.drawDeath.bind(this);
   }
 
   parse() {
@@ -104,16 +103,43 @@ class GamePlay {
       this.gameOver();
       this.createScore({
         score: this.score,
-        secondsElapsed: this.elapsedTime,
+        secondsElapsed: Math.floor(
+          (Date.now() - this.startingTime) / 1000
+        ),
         username: this.currentUsername
       });
     }
   }
 
   gameOver() {
-    this.ctx.fillStyle = "red";
     this.ctx.font = "100px 'Press Start 2P', cursive";
-    this.ctx.fillText("GAME OVER", 50, 325);
+    this.ctx.fillStyle = "white";
+    this.ctx.fillRect(50, 50, 900, 500);
+    this.ctx.fillStyle = "red";
+    this.ctx.fillText("GAME OVER", 55, 200);
+    this.ctx.font = "30px 'Press Start 2P', cursive";
+    this.ctx.fillStyle = "black";
+    this.ctx.fillText("Words missed:", 325, 250);
+    this.ctx.font = "10px 'Press Start 2P', cursive";
+
+    let xVal = 97;
+    let yVal = 250;
+    
+    for(let i = 0; i < this.unkilledBugs.length; i++) {
+      if (i % 5 === 0) {
+        yVal += 50;
+      }
+
+      if (i % 5 === 0) {
+        xVal = 97;
+      }
+      this.ctx.fillText(this.unkilledBugs[i].originalWord, xVal, yVal);
+      xVal += 175;
+    }
+
+    this.ctx.fillStyle = "red";
+    this.ctx.font = "20px 'Press Start 2P', cursive";
+    this.ctx.fillText("Your score has been submitted!", 200, 510)
   }
 
   step() {
@@ -139,7 +165,7 @@ class GamePlay {
       bugCenter[1] = bug.position[1] + 45;
       const distBetweenCenters = Util.distance(bugCenter, this.destination);
       if (distBetweenCenters < bug.radius) {
-        this.bugs.splice(i, 1);
+        this.unkilledBugs.push(this.bugs.splice(i, 1)[0]);
         this.lives -= 5;
       }
     });
@@ -270,7 +296,7 @@ class GamePlay {
     ctx.fillText(`Score: ${this.score}`, 600, 622);
 
     this.lives <= 25 ? ctx.fillStyle = "red" : ctx.fillStyle = "green"
-    ctx.fillText(`Lives: ${this.lives}`, 850, 622);
+    ctx.fillText(`Health: ${this.lives}`, 830, 622);
 
   }
 }

@@ -17,11 +17,12 @@ class Bug {
 
     this.difficulty = difficulty;
     this.position = [xPos, yPos];
-    this.speed = Math.random() * (2000 - 500) + 500;
+    this.speed = Math.random() * (200 - 500) + 500;
     this.radius = 45;
     this.xDiff = 970 - this.position[0]; // destination position - bug's starting position
     this.yDiff = 570 - this.position[1];
     this.word = getRandomWord(difficulty);
+    this.originalWord = this.word;
 
     this.image = bugImage;
     this.frameWidth = 160;
