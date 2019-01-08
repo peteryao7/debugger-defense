@@ -1,4 +1,5 @@
 import React from 'react';
+import FooterContainer from "../footer/footer_container";
 
 class LeaderBoard extends React.Component {
     constructor(props) {
@@ -56,9 +57,12 @@ class LeaderBoard extends React.Component {
         }
 
         return (
-            <div className="leaderboard-container">
-                <h5>Leaderboard</h5>
-                <ul className="leaderboard-score-list">{this.formatScores()}</ul>
+            <div>
+                <div className="leaderboard-container">
+                    <h5>Leaderboard</h5>
+                    <ul className="leaderboard-score-list">{this.formatScores()}</ul>
+                </div>
+                <FooterContainer />
             </div>
         )
     }
