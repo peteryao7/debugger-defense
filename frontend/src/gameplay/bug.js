@@ -8,18 +8,19 @@ class Bug {
         let xPos, yPos;
 
         if (Math.random() > .5) {
-            xPos = 20;
-            yPos = Math.random() * 600;
+            xPos = 5;
+            yPos = Math.random() * (600 - 150);
         } else {
-            xPos = Math.random() * 1000;
-            yPos = 20;
+            xPos = Math.random() * (600 - 150);
+            yPos = 5;
         }
 
+        this.difficulty = difficulty;
         this.position = [xPos, yPos]
         this.speed = (Math.random() * 2000) + 100;
         this.radius = 45;
-        this.xDiff = 1000 - this.position[0];
-        this.yDiff = 600 - this.position[1];
+        this.xDiff = 970 - this.position[0]; // destination position - bug's starting position
+        this.yDiff = 570 - this.position[1];
         this.word = getRandomWord(difficulty);
 
         this.image = bugImage;
@@ -51,12 +52,20 @@ class Bug {
     drawWord(ctx) {
         ctx.fillStyle = "black";
         ctx.font = "20px Comic Sans";
-        ctx.fillText(this.word, this.position[0] + 35, this.position[1] + 20)
+        ctx.textAlign = "center";
+        const wordLength = ctx.measureText(this.word).width;
+        if (this.position[0] >= 865 && wordLength >= 80) {
+            ctx.fillText(this.word, 905, this.position[1] + 20)
+        }
+        else {
+            ctx.fillText(this.word, this.position[0] + 45, this.position[1] + 20)
+        }
+        ctx.textAlign = "start";
     }
 
     move() {
-        this.position[0] += (this.xDiff - 90) / this.speed;
-        this.position[1] += (this.yDiff - 90) / this.speed;
+        this.position[0] += (this.xDiff-45) / this.speed; // 45 is half of size of bug
+        this.position[1] += (this.yDiff-45) / this.speed;
     }
 
 }

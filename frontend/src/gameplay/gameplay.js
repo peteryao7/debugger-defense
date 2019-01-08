@@ -6,8 +6,8 @@ class GamePlay {
     this.currentUsername = currentUsername;
     this.ctx = ctx;
     this.destination = [970, 570];
-    this.difficulty = 1;
-    this.killCount = 0;
+    this.difficulty = 10;
+    this.killCount = 200;
     this.lives = 20;
     this.score = 0;
     this.secondsElapsed = 0;
@@ -88,7 +88,7 @@ class GamePlay {
       bugCenter[0] = bug.position[0] + 45;
       bugCenter[1] = bug.position[1] + 45;
       const distBetweenCenters = Util.distance(bugCenter, this.destination);
-      if (distBetweenCenters < bug.radius + 20) {
+      if (distBetweenCenters < bug.radius) {
         this.bugs.splice(i, 1);
         this.lives -= 1;
       }
@@ -141,7 +141,7 @@ class GamePlay {
   }
 
   drawBackground(ctx) {
-    ctx.fillStyle = "blue";
+    ctx.fillStyle = "gray";
     ctx.fillRect(0, 0, 1000, 600);
   }
 
