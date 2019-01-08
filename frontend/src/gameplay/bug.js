@@ -89,37 +89,66 @@ class Bug {
     }
   }
 
+  drawWordBackground(ctx, wordLength) {
+    let rectX = 0;
+    let rectY = this.position[1] - 20;
+    let rectWidth = 0;
+    let rectHeight = 43;
+    let cornerRadius = 20;
+    ctx.lineJoin = "round";
+
+    ctx.fillStyle = "white"; // background color of bug text
+
+    if (wordLength <= 70) {
+      rectX = this.position[0] - 5;
+      rectWidth = 100;
+    }
+    else if (wordLength <= 90) {
+      rectX = this.position[0]-15;
+      rectWidth = 120;
+    }
+    else if (wordLength <= 110) {
+      rectX = this.position[0] - 25;
+      rectWidth = 140;
+    }
+    else if (wordLength <= 130) {
+      rectX = this.position[0] - 35;
+      rectWidth = 160;
+    }
+    else if (wordLength <= 150) {
+      rectX = this.position[0] - 45;
+      rectWidth = 180;
+    }
+    else if (wordLength <= 170) {
+      rectX = this.position[0] - 55;
+      rectWidth = 200;
+    }
+    else if (wordLength <= 190) {
+      rectX = this.position[0] - 65;
+      rectWidth = 220;
+    }
+    else if (wordLength <= 210) {
+      rectX = this.position[0] - 75;
+      rectWidth = 240;
+    }
+    else if (wordLength <= 230) {
+      rectX = this.position[0] - 85;
+      rectWidth = 260;
+    }
+
+    ctx.strokeRect(rectX + cornerRadius / 2, rectY + cornerRadius / 2, rectWidth - cornerRadius, rectHeight - cornerRadius);
+    ctx.fillRect(rectX + cornerRadius / 2, rectY + cornerRadius / 2, rectWidth - cornerRadius, rectHeight - cornerRadius);
+  }
+
   drawWord(ctx) {
-    ctx.font = "20px Arial";
+    ctx.font = "bold 20px Arial";
     ctx.textAlign = "center";
     const wordLength = ctx.measureText(this.word).width;
 
-    // ctx.fillStyle = "#33ccff"; // background color of bug text
+    this.drawWordBackground(ctx, wordLength);
 
-    if (this.position[0] >= 865 && wordLength >= 80) {
-        // ctx.fillRect(this.position[0], this.position[1] - 12, 90, 30);
-        ctx.fillStyle = "black";
-        ctx.fillText(this.word, 905, this.position[1] + 15)
-    }
-    else {
-        // ctx.fillRect(this.position[0], this.position[1] - 12, 90, 20);
-        ctx.fillStyle = "black";
-        ctx.fillText(this.word, this.position[0] + 45, this.position[1] + 15)
-    }
-
-    // if (this.position[0] >= 865 && wordLength >= 70) {
-    //   ctx.fillRect(825, this.position[1] - 12, wordLength + 25, 20);
-    //   ctx.fillStyle = "black";
-    //   ctx.fillText(this.word, 905, this.position[1] + 5);
-    // } else if (wordLength >= 70) {
-    //   ctx.fillRect(this.position[0], this.position[1] - 12, 90, 30);
-    //   ctx.fillStyle = "black";
-    //   ctx.fillText(this.word, this.position[0] + 45, this.position[1] + 5);
-    // } else {
-    //   ctx.fillRect(this.position[0], this.position[1] - 12, 90, 30);
-    //   ctx.fillStyle = "black";
-    //   ctx.fillText(this.word, this.position[0] + 45, this.position[1] + 10);
-    // }
+    ctx.fillStyle = "black";
+    ctx.fillText(this.word, this.position[0] + 45, this.position[1] + 8)
     ctx.textAlign = "start";
   }
 
