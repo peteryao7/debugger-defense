@@ -15,7 +15,6 @@ class Bug {
       yPos = 5;
     }
 
-<<<<<<< HEAD
         this.difficulty = difficulty;
         this.position = [xPos, yPos]
         this.speed = Math.random() * (2000 - 500) + 500;
@@ -23,15 +22,6 @@ class Bug {
         this.xDiff = 970 - this.position[0]; // destination position - bug's starting position
         this.yDiff = 570 - this.position[1];
         this.word = getRandomWord(difficulty);
-=======
-    this.difficulty = difficulty;
-    this.position = [xPos, yPos];
-    this.speed = Math.random() * 2000 + 100;
-    this.radius = 45;
-    this.xDiff = 970 - this.position[0]; // destination position - bug's starting position
-    this.yDiff = 570 - this.position[1];
-    this.word = getRandomWord(difficulty);
->>>>>>> ce093ff8ad51dd2fbe290637bb5c0b8e1640cf1e
 
     this.image = bugImage;
     this.frameWidth = 160;
