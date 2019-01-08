@@ -1,0 +1,72 @@
+.footer {
+    background: #d0d0d0;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.about-us {
+  text-transform: uppercase;
+  font-size: 15px;
+
+  cursor: pointer;
+}
+
+.about-us:hover {
+  color: green;
+}
+
+.about-box {
+  width: 600px;
+  height: 450px;
+  padding: 10px;
+  background: #DCDCDC;
+  border-radius: 10px;
+  border-color: 2px solid black;
+  box-shadow: -20px 20px 20px black;
+
+  box-sizing: border-box;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.about-box h2 {
+  text-transform: uppercase;
+  font-size: 20px;
+}
+
+.persons-box {
+  box-sizing: border-box;
+  width: 100%;
+  height: 30%;
+  display: flex;
+}
+
+.about-person {
+  width: 100%;
+  height: 100%;
+  margin: 0 20px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.github-logo {
+  background-image: url("../game/github.png");
+  display: inline-block;
+  background-size: 25px 25px;
+  background-repeat: no-repeat;
+  vertical-align: bottom;
+  overflow: hidden;
+  height: 0;
+  width: 25px;
+  padding-top: 25px;
+
+  cursor: pointer;
+}

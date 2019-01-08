@@ -1,6 +1,9 @@
 import Bug from "./bug";
 import Util from "./util";
 
+const background = new Image();
+background.src = '/game/circuitboard.png';
+
 class GamePlay {
   constructor(currentUsername, ctx, createScore) {
     this.currentUsername = currentUsername;
@@ -12,6 +15,7 @@ class GamePlay {
     this.score = 0;
     this.secondsElapsed = 0;
     this.startingTime = 0;
+    this.background = background;
 
     this.startingTime = Date.now();
     this.elapsedTime = null;
@@ -141,8 +145,9 @@ class GamePlay {
   }
 
   drawBackground(ctx) {
-    ctx.fillStyle = "gray";
-    ctx.fillRect(0, 0, 1000, 600);
+    // ctx.fillStyle = "blue";
+    ctx.drawImage(this.background, 0, 0, 1000, 600)
+    // ctx.fillRect(0, 0, 1000, 600);
   }
 
   drawBugs(ctx) {
