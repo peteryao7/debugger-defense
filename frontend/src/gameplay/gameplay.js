@@ -1,11 +1,14 @@
 import Bug from "./bug";
 import Util from "./util";
+import Explosion from './explosion';
 
 const background = new Image();
 background.src = '/game/circuitboard.png';
 
 const destinationImage = new Image();
 destinationImage.src = '/game/Prod_256.png';
+
+
 
 class GamePlay {
   constructor(currentUsername, ctx, createScore) {
@@ -20,11 +23,13 @@ class GamePlay {
     this.startingTime = 0;
     this.background = background;
     this.destinationImage = destinationImage;
+   
 
     this.startingTime = Date.now();
     this.elapsedTime = null;
     
     this.bugs = new Array(5).fill().map(el => new Bug(this.difficulty, this.startingTime));
+    this.deaths = [];
     this.createScore = createScore;
 
     this.parse();
@@ -88,6 +93,11 @@ class GamePlay {
     this.bugs.forEach(bug => {
       bug.move();
     });
+    this.deaths.forEach((death, i) => {
+      if (death.doneExploding) {
+        this.deaths.splice(i, 1)
+      }
+    })
   }
 
   detectCollision() {
@@ -107,7 +117,8 @@ class GamePlay {
     if (this.bugs.length > 0) {
       this.bugs.forEach((bug, i) => {
         if (bug.word[bug.word.length - 1] === "_") {
-          this.bugs.splice(i, 1);
+          this.deaths.push(new Explosion(this.elapsedTime, bug.position))
+          this.bugs.splice(i, 1);   
           this.killCount += 1;
           this.score += 100 * this.difficulty;
         }
@@ -146,12 +157,11 @@ class GamePlay {
     this.drawPlayerInfo(ctx);
     this.drawDestination(ctx);
     this.drawBugs(ctx);
+    this.drawDeath(this.ctx);  
   }
 
   drawBackground(ctx) {
-    // ctx.fillStyle = "blue";
     ctx.drawImage(this.background, 0, 0, 1000, 600)
-    // ctx.fillRect(0, 0, 1000, 600);
     ctx.fillStyle = "white";
     ctx.fillRect(0, 600, 1000, 630);
   }
@@ -159,6 +169,12 @@ class GamePlay {
   drawBugs(ctx) {
     this.bugs.forEach(bug => {
       bug.draw(ctx);
+    });
+  }
+
+  drawDeath(ctx) {
+    this.deaths.forEach(death => {
+      death.draw(ctx, this.elapsedTime);
     });
   }
 
