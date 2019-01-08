@@ -22,6 +22,7 @@ class Bug {
     this.xDiff = 970 - this.position[0]; // destination position - bug's starting position
     this.yDiff = 570 - this.position[1];
     this.word = getRandomWord(difficulty);
+    this.originalWord = this.word;
 
     this.image = bugImage;
     this.frameWidth = 160;
