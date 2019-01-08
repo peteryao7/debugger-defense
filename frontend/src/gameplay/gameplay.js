@@ -31,12 +31,12 @@ class GamePlay {
     window.addEventListener("keydown", event => {
       for (let i = 0; i < this.bugs.length; i++) {
         for (let j = 0; j < this.bugs[i].word.length; j++) {
-          if (this.bugs[i].word.charAt(j) === "$") {
+          if (this.bugs[i].word.charAt(j) === "_") {
             continue;
           } else if (event.key === this.bugs[i].word.charAt(j)) {
             this.bugs[i].word = this.bugs[i].word.replace(
               this.bugs[i].word.charAt(j),
-              "$"
+              "_"
             );
             break;
           } else {
@@ -76,8 +76,8 @@ class GamePlay {
 
   gameOver() {
     this.ctx.fillStyle = "red";
-    this.ctx.font = "100px Comic Sans";
-    this.ctx.fillText("GAME OVER", 200, 325);
+    this.ctx.font = "100px 'Press Start 2P', cursive";
+    this.ctx.fillText("GAME OVER", 50, 325);
   }
 
   step() {
@@ -102,7 +102,7 @@ class GamePlay {
   detectFullSpelling() {
     if (this.bugs.length > 0) {
       this.bugs.forEach((bug, i) => {
-        if (bug.word[bug.word.length - 1] === "$") {
+        if (bug.word[bug.word.length - 1] === "_") {
           this.bugs.splice(i, 1);
           this.killCount += 1;
           this.score += 100 * this.difficulty;
@@ -139,7 +139,7 @@ class GamePlay {
 
   draw(ctx) {
     this.drawBackground(ctx);
-    this.drawKillCount(ctx);
+    this.drawPlayerInfo(ctx);
     this.drawDestination(ctx);
     this.drawBugs(ctx);
   }
@@ -148,6 +148,8 @@ class GamePlay {
     // ctx.fillStyle = "blue";
     ctx.drawImage(this.background, 0, 0, 1000, 600)
     // ctx.fillRect(0, 0, 1000, 600);
+    ctx.fillStyle = "white";
+    ctx.fillRect(0, 600, 1000, 630);
   }
 
   drawBugs(ctx) {
@@ -163,16 +165,26 @@ class GamePlay {
     ctx.fill();
   }
 
-  drawKillCount(ctx) {
-    ctx.fillStyle = "white";
-    ctx.font = "20px Comic Sans";
-    ctx.fillText(
-      `Score: ${this.score} Seconds Elapsed: ${this.elapsedTime} Kill count: ${this.killCount} Level: ${
-      this.difficulty
-      } Lives: ${this.lives}`,
-      200,
-      200
-    );
+  /*
+    kill count
+    seconds
+    level
+
+
+    score
+    lives
+  */
+  drawPlayerInfo(ctx) {
+    ctx.fillStyle = "black";
+    ctx.font = "15px 'Press Start 2P', cursive";
+    ctx.fillText(`Level: ${this.difficulty}`, 10, 622 );
+    ctx.fillText(`Kills: ${this.killCount}`, 170, 622);
+    ctx.fillText(`Time: ${this.elapsedTime}`, 350, 622);
+    ctx.fillText(`Score: ${this.score}`, 600, 622);
+
+    this.lives <= 5 ? ctx.fillStyle = "red" : ctx.fillStyle = "green"
+    ctx.fillText(`Lives: ${this.lives}`, 850, 622);
+
   }
 }
 

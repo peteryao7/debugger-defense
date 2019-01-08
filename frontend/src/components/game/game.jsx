@@ -30,7 +30,7 @@ class Game extends React.Component {
             requestAnimationFrame(this.initializeGame)
             return (
                 <div className="canvas-restart-container">
-                    <canvas ref="canvas" width={1000} height={600} />
+                    <canvas ref="canvas" width={1000} height={630} />
                     
                     <div className="game-footer">
                         <div className="restart-button" onClick={this.initializeGame}>
