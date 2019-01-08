@@ -15,9 +15,9 @@ class GamePlay {
     this.currentUsername = currentUsername;
     this.ctx = ctx;
     this.destination = [970, 570];
-    this.difficulty = 6;
-    this.killCount = 100;
-    this.lives = 20;
+    this.difficulty = 10;
+    this.killCount = 200;
+    this.lives = 100;
     this.score = 0;
     this.secondsElapsed = 0;
     this.startingTime = 0;
@@ -109,7 +109,7 @@ class GamePlay {
       const distBetweenCenters = Util.distance(bugCenter, this.destination);
       if (distBetweenCenters < bug.radius) {
         this.bugs.splice(i, 1);
-        this.lives -= 1;
+        this.lives -= 5;
       }
     });
   }
@@ -210,7 +210,7 @@ class GamePlay {
     ctx.fillText(`Time: ${this.elapsedTime}`, 350, 622);
     ctx.fillText(`Score: ${this.score}`, 600, 622);
 
-    this.lives <= 5 ? ctx.fillStyle = "red" : ctx.fillStyle = "green"
+    this.lives <= 25 ? ctx.fillStyle = "red" : ctx.fillStyle = "green"
     ctx.fillText(`Lives: ${this.lives}`, 850, 622);
 
   }
