@@ -2,6 +2,7 @@
     background: lightgrey;
     font-family: 'Press Start 2P', cursive;
     display: flex;
+    justify-content: space-around;
 }
 
 .game-box {

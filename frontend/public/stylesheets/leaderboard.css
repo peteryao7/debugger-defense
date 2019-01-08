@@ -4,7 +4,8 @@
     align-items: center;
     background: white;
     margin: 10px;
-    right: 0;
+
+    width: 300px;
     height: 630px;
     padding: 0 10px 0 10px;
 }
