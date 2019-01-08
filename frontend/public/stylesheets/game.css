@@ -2,10 +2,10 @@
   margin: 10px;
 }
 
-canvas {
+/* canvas {
     width: 80vw;
     height: 80vh;
-}
+} */
 
 .canvas-restart-container {
     display: flex;
