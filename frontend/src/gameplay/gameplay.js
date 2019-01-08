@@ -23,7 +23,7 @@ class GamePlay {
 
     this.startingTime = Date.now();
     this.elapsedTime = null;
-    
+
     this.bugs = new Array(5).fill().map(el => new Bug(this.difficulty, this.startingTime));
     this.createScore = createScore;
 
@@ -187,7 +187,7 @@ class GamePlay {
   drawPlayerInfo(ctx) {
     ctx.fillStyle = "black";
     ctx.font = "15px 'Press Start 2P', cursive";
-    ctx.fillText(`Level: ${this.difficulty}`, 10, 622 );
+    ctx.fillText(`Level: ${this.difficulty}`, 10, 622);
     ctx.fillText(`Kills: ${this.killCount}`, 170, 622);
     ctx.fillText(`Time: ${this.elapsedTime}`, 350, 622);
     ctx.fillText(`Score: ${this.score}`, 600, 622);
