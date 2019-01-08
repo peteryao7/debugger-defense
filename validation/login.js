@@ -7,8 +7,8 @@ module.exports = function validateLoginInput(data) {
   data.username = validText(data.username) ? data.username : '';
   data.password = validText(data.password) ? data.password : '';
 
-  if (!Validator.isLength(data.username, { min: 2, max: 30 })) {
-    errors.username = "Username must be between 2 and 30 characters";
+  if (!Validator.isLength(data.username, { min: 2, max: 12 })) {
+    errors.username = "Username must be between 2 and 12 characters";
   }
 
   if (Validator.isEmpty(data.username)) {

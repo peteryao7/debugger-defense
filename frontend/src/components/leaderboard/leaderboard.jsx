@@ -10,9 +10,36 @@ class LeaderBoard extends React.Component {
         this.props.fetchScores();
     }
 
+    counterColor(num) {
+        if (num === 1) {
+            return <div className="first-place"> 
+                {num}
+            </div>
+        } else if (num === 2) {
+            return <div className="second-place">
+                {num}
+            </div>
+        } else if (num === 3) {
+            return <div className="third-place">{num}</div>;
+        }
+        else return <div>{num}</div>
+    }
+
     formatScores() {
+        let counter = 0;
         const formatted = this.props.scores.map(score => {
-            return (<li key={score.date} className="leaderboard-single-score">{score.username}: {score.score}, {score.secondsElapsed} seconds</li>)
+            counter += 1;
+            return (<li key={score.date} className="leaderboard-single-score">
+            {this.counterColor(counter)}
+            <div className="score-info">
+            <br/>
+            {score.username} 
+            <br/> 
+            {score.score} 
+            <br/> 
+            {score.secondsElapsed} sec
+            <div/>
+            </div></li>)
         }
         )
         return formatted;
