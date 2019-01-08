@@ -25,6 +25,7 @@ class GamePlay {
     this.elapsedTime = null;
     
     this.bugs = new Array(5).fill().map(el => new Bug(this.difficulty, this.startingTime));
+    this.unkilledBugs = [];
     this.createScore = createScore;
 
     this.parse();
@@ -66,13 +67,14 @@ class GamePlay {
 
     if (this.lives > 0) {
       this.elapsedTime = Math.floor((Date.now() - this.startingTime) / 1000);
-
       requestAnimationFrame(this.animate.bind(this));
     } else {
       this.gameOver();
       this.createScore({
         score: this.score,
-        secondsElapsed: this.elapsedTime,
+        secondsElapsed: Math.floor(
+          (Date.now() - this.startingTime) / 1000
+        ),
         username: this.currentUsername
       });
     }
@@ -82,6 +84,22 @@ class GamePlay {
     this.ctx.fillStyle = "red";
     this.ctx.font = "100px 'Press Start 2P', cursive";
     this.ctx.fillText("GAME OVER", 50, 325);
+    this.ctx.font = "10px Arial";
+
+    let xVal = 100;
+    let yVal = 400;
+    
+    for(let i = 0; i < this.unkilledBugs.length; i++) {
+      if (i >= 10) {
+        yVal = 500;
+      }
+
+      if (i === 10) {
+        xVal = 100;
+      }
+      this.ctx.fillText(this.unkilledBugs[i].word, xVal, yVal);
+      xVal += 75;
+    }
   }
 
   step() {
@@ -97,7 +115,7 @@ class GamePlay {
       bugCenter[1] = bug.position[1] + 45;
       const distBetweenCenters = Util.distance(bugCenter, this.destination);
       if (distBetweenCenters < bug.radius) {
-        this.bugs.splice(i, 1);
+        this.unkilledBugs.push(this.bugs.splice(i, 1)[0]);
         this.lives -= 5;
       }
     });
