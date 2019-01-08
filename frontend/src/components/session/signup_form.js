@@ -39,15 +39,21 @@ class SignupForm extends React.Component {
   }
 
   renderErrors() {
-    return(
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
-        ))}
-      </ul>
-    );
+    if (Object.values(this.state.errors).length === 0 ) {
+      return null
+    } else {
+      return (
+        <div className="signup-session-errors">
+          <ul>
+            {Object.keys(this.state.errors).map((error, i) => (
+              <li key={`error-${i}`}>
+                {this.state.errors[error]}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    } 
   }
 
   render() {
@@ -91,9 +97,8 @@ class SignupForm extends React.Component {
               <input className="session-button" type="submit" value="Submit" />
             </div>
           </form>
-          <div className="session-errors">
-            {this.renderErrors()}
-          </div>
+        
+          {this.renderErrors()}
         </div>
         
       </div>
