@@ -1,5 +1,4 @@
 import { connect } from 'react-redux';
-import { fetchSingleScore } from '../../actions/score_actions'
 import PlayerScore from './player_score';
 
 function compare(a, b) {
@@ -26,10 +25,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    fetchSingleScore: username => dispatch(fetchSingleScore(username))
-  };
-};
-
-export default connect(mapStateToProps, mapDispatchToProps)(PlayerScore);
+export default connect(mapStateToProps, null)(PlayerScore);

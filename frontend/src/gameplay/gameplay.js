@@ -92,7 +92,7 @@ class GamePlay {
       bugCenter[0] = bug.position[0] + 45;
       bugCenter[1] = bug.position[1] + 45;
       const distBetweenCenters = Util.distance(bugCenter, this.destination);
-      if (distBetweenCenters < bug.radius + 20) {
+      if (distBetweenCenters < bug.radius) {
         this.bugs.splice(i, 1);
         this.lives -= 1;
       }

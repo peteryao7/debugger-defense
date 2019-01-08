@@ -1,16 +1,6 @@
 import React from 'react';
 
 class PlayerScore extends React.Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {}
-    }
-
-    componentDidMount() {
-        this.props.fetchSingleScore(this.props.currentUsername);
-    }
-
     render() {
         if (this.props.currentUsername === "LazyGuest") {
           return <div>Log in to see your name on the leaderboard!</div>;

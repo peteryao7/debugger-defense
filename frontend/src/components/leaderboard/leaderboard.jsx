@@ -7,7 +7,6 @@ class LeaderBoard extends React.Component {
     }
 
     componentDidMount() {
-        //fetch scores from all users (if we want scroll) otherwise top 10-50
         this.props.fetchScores();
     }
 
