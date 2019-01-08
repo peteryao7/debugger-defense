@@ -36,19 +36,24 @@ class SignupForm extends React.Component {
     };
 
     this.props.signup(user, this.props.history)
-      .then( () => this.props.closeModal()); 
   }
 
   renderErrors() {
-    return(
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
-        ))}
-      </ul>
-    );
+    if (Object.values(this.state.errors).length === 0 ) {
+      return null
+    } else {
+      return (
+        <div className="signup-session-errors">
+          <ul>
+            {Object.keys(this.state.errors).map((error, i) => (
+              <li key={`error-${i}`}>
+                {this.state.errors[error]}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    } 
   }
 
   render() {
@@ -90,9 +95,10 @@ class SignupForm extends React.Component {
               />
               <br />
               <input className="session-button" type="submit" value="Submit" />
-              {this.renderErrors()}
             </div>
           </form>
+        
+          {this.renderErrors()}
         </div>
         
       </div>

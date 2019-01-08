@@ -21,6 +21,10 @@ class LoginForm extends React.Component {
     });
   }
 
+  componentWillReceiveProps(nextProps) {
+    this.setState({ errors: nextProps.errors })
+  }
+
   handleSubmit(e) {
     e.preventDefault();
 
@@ -33,15 +37,21 @@ class LoginForm extends React.Component {
   }
 
   renderErrors() {
-    return(
-      <ul>
-        {Object.keys(this.state.errors).map((error, i) => (
-          <li key={`error-${i}`}>
-            {this.state.errors[error]}
-          </li>
-        ))}
-      </ul>
-    );
+    if (Object.values(this.state.errors).length === 0) {
+      return null
+    } else {
+      return(
+        <div className="login-session-errors">
+          <ul>
+            {Object.keys(this.state.errors).map((error, i) => (
+              <li key={`error-${i}`}>
+                {this.state.errors[error]}
+              </li>
+            ))}
+          </ul>
+        </div>
+      );
+    }
   }
 
   render() {
@@ -68,9 +78,11 @@ class LoginForm extends React.Component {
               />
               <br />
               <input className="session-button" type="submit" value="Submit" />
-              {this.renderErrors()}
             </div>
           </form>
+          
+          {this.renderErrors()}
+
         </div>
   
       </div>
