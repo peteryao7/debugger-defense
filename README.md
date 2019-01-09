@@ -6,7 +6,7 @@
 
 Debugger Defense is a typing game that incorporates gameplay elements from Typing Ninja Hunter on a game map similar to that of a tower defense game, such as Bloons Tower Defense. The game is built primarily with the MERN stack.
 
-Enemies traverse a path through the map and have words or phrases under them; if an enemy reaches the end of the path with letters still under them, the player will lose a life. The goal of the game is to kill enemies by typing their respective phrases before they reach the other end of the map and achieve the highest score before the player runs out of lives. The game increases in difficulty with enemies that travel through the map faster and have longer phrases to type out. We are also planning to implement a global high score board where players can compete for the highest score.
+Bugs traverse a path through a circuit to production and have words above them. If a bug reaches production with letters above them, the player will lose health. The goal of the game is to kill bugs by typing their respective words before they reach production and achieve the highest score before the player runs out of health. As the level increases, bugs will have longer words for the player to type out. Compete for the highest score on the leaderboard!
 
 ## Functionality and MVP
 - [ ] User authorization: sign up and log in
