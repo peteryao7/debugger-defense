@@ -14,19 +14,17 @@ class NavBar extends React.Component {
 
   getLinks() {
       if (this.props.loggedIn) {
-        return (
-            <div className="navbar-container">
-                <div className="welcome-message">
-                    <h1>Welcome, {this.props.currentUser.username}!</h1>
-                </div>
-                <div className="navbar-title">
-                    <div>Debugger Defense</div>
-                </div>
-                <div className="logout-container">
-                    <div className="nav-logout" onClick={this.logoutUser}>Logout</div>
-                </div>
+        return <div className="navbar-container">
+            <div className="welcome-message">
+              <h1>Welcome, {this.props.currentUser.username}!</h1>
             </div>
-        );
+            <div className="navbar-title">
+              <div>Debugger Defense</div>
+            </div>
+            <div className="logout-container" onClick={this.logoutUser}>
+              <div className="nav-logout">Logout</div>
+            </div>
+          </div>;
       } else {
         return (
             <div className="navbar-container">

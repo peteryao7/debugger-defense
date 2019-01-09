@@ -34,7 +34,7 @@ class GamePlay {
 
     this.audio = new Audio('the_chase.mp3');
     this.audio.loop = true;
-    this.audio.volume = 0.5;
+    this.audio.volume = 1;
     this.audio.play();
 
     this.parse();
@@ -93,11 +93,12 @@ class GamePlay {
     let x = Math.random();
     if (x < 0.02 && this.bugs.length < 20) {
       this.moreBugs();
+      if (this.elapsedTime >= 300 && x < 0.05) this.moreBugs();
     }
 
     //randomly add ducks
     let duckChance = Math.random();
-    if (duckChance < 0.001) {
+    if (duckChance < 0.0005) {
       this.moreDucks();
     }
 
@@ -195,7 +196,7 @@ class GamePlay {
           this.deaths.push(new Explosion(bug.position));
           this.bugs.splice(i, 1);
           this.killCount += 1;
-          this.score += 100 * this.difficulty;
+          this.score += 100 * bug.difficulty;
           snd.play();
         }
       });
@@ -209,8 +210,9 @@ class GamePlay {
 
           this.bugs.forEach(bug => {
             this.deaths.push(new Explosion(bug.position))
+            this.score += 100 * bug.difficulty
           })
-
+          this.killCount += this.bugs.length
           this.bugs = []
         }
       });
@@ -219,23 +221,23 @@ class GamePlay {
   }
 
   incrementDifficulty() {
-    if (this.killCount >= 160) {
+    if (this.killCount >= 200) {
       this.difficulty = 10;
-    } else if (this.killCount >= 140) {
+    } else if (this.killCount >= 175) {
       this.difficulty = 9;
-    } else if (this.killCount >= 120) {
+    } else if (this.killCount >= 150) {
       this.difficulty = 8;
-    } else if (this.killCount >= 100) {
+    } else if (this.killCount >= 125) {
       this.difficulty = 7;
-    } else if (this.killCount >= 80) {
+    } else if (this.killCount >= 100) {
       this.difficulty = 6;
-    } else if (this.killCount >= 60) {
+    } else if (this.killCount >= 75) {
       this.difficulty = 4;
-    } else if (this.killCount >= 40) {
+    } else if (this.killCount >= 50) {
       this.difficulty = 3;
-    } else if (this.killCount > 20) {
+    } else if (this.killCount > 25) {
       this.difficulty = 2;
-    } else if (this.killCount <= 20) {
+    } else if (this.killCount <= 25) {
       this.difficulty = 1;
     }
   }
