@@ -15,8 +15,8 @@ class GamePlay {
     this.currentUsername = currentUsername;
     this.ctx = ctx;
     this.destination = [970, 570];
-    this.difficulty = 8;
-    this.killCount = 120;
+    this.difficulty = 1;
+    this.killCount = 0;
     this.lives = 100;
     this.score = 0;
     this.secondsElapsed = 0;
