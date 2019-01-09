@@ -1,4 +1,5 @@
 import Bug from "./bug";
+import Duck from "./duck";
 import Util from "./util";
 import Explosion from './explosion';
 
@@ -24,10 +25,9 @@ class GamePlay {
 
     this.startingTime = Date.now();
     this.elapsedTime = null;
-
-    this.bugs = new Array(5)
-      .fill()
-      .map(el => new Bug(this.difficulty, this.startingTime));
+    
+    this.bugs = new Array(5).fill().map(el => new Bug(this.difficulty, this.startingTime));
+    this.ducks = [];
     this.unkilledBugs = [];
     this.deaths = [];
     this.createScore = createScore;
@@ -38,6 +38,7 @@ class GamePlay {
     this.audio.play();
 
     this.parse();
+    this.duckParse();
     this.animate();
   }
 
@@ -61,6 +62,26 @@ class GamePlay {
     });
   }
 
+  duckParse() {
+    window.addEventListener("keydown", event => {
+      for (let i = 0; i < this.ducks.length; i++) {
+        for (let j = 0; j < this.ducks[i].word.length; j++) {
+          if (this.ducks[i].word.charAt(j) === "_") {
+            continue;
+          } else if (event.key === this.ducks[i].word.charAt(j)) {
+            this.ducks[i].word = this.ducks[i].word.replace(
+              this.ducks[i].word.charAt(j),
+              "_"
+            );
+            break;
+          } else {
+            break;
+          }
+        }
+      }
+    });
+  }
+
   animate() {
     this.detectCollision();
     this.detectFullSpelling();
@@ -72,6 +93,12 @@ class GamePlay {
     let x = Math.random();
     if (x < 0.02 && this.bugs.length < 20) {
       this.moreBugs();
+    }
+
+    //randomly add ducks
+    let duckChance = Math.random();
+    if (duckChance < 0.001) {
+      this.moreDucks();
     }
 
     if (this.lives > 0) {
@@ -125,6 +152,11 @@ class GamePlay {
     this.bugs.forEach(bug => {
       bug.move();
     });
+
+    this.ducks.forEach(duck => {
+      duck.move();
+    })
+
     this.deaths.forEach((death, i) => {
       if (death.doneExploding) {
         this.deaths.splice(i, 1);
@@ -143,6 +175,16 @@ class GamePlay {
         this.lives -= 5;
       }
     });
+
+    const duckCenter = new Array(2)
+    this.ducks.forEach((duck, i) => {
+      duckCenter[0] = duck.position[0] + 45;
+      duckCenter[1] = duck.position[1] + 45;
+      const distBetweenCenters = Util.distance(duckCenter, this.destination);
+      if (distBetweenCenters < duck.radius) {
+        this.ducks.splice(i, 1);
+      }
+    })
   }
 
   detectFullSpelling() {
@@ -158,6 +200,22 @@ class GamePlay {
         }
       });
     }
+
+    if (this.ducks.length > 0) {
+      this.ducks.forEach((duck, i) => {
+        if (duck.word[duck.word.length - 1] === "_") {
+          this.deaths.push(new Explosion(duck.position))
+          this.ducks.splice(i, 1);
+
+          this.bugs.forEach(bug => {
+            this.deaths.push(new Explosion(bug.position))
+          })
+
+          this.bugs = []
+        }
+      });
+    }
+
   }
 
   incrementDifficulty() {
@@ -186,12 +244,17 @@ class GamePlay {
     this.bugs.push(new Bug(this.difficulty, this.startingTime));
   }
 
+  moreDucks() {
+    this.ducks.push(new Duck(this.startingTime))
+  }
+
   draw(ctx) {
     this.drawBackground(ctx);
     this.drawPlayerInfo(ctx);
     this.drawDestination(ctx);
     this.drawBugs(ctx);
-    this.drawDeath(ctx);
+    this.drawDucks(ctx)
+    this.drawDeath(ctx);  
   }
 
   drawBackground(ctx) {
@@ -204,6 +267,12 @@ class GamePlay {
     this.bugs.forEach(bug => {
       bug.draw(ctx);
     });
+  }
+
+  drawDucks(ctx) {
+    this.ducks.forEach(duck => {
+      duck.draw(ctx)
+    })
   }
 
   drawDeath(ctx) {
