@@ -21,6 +21,10 @@
   font-size: 30px;
 }
 
+.instructions > p {
+  line-height: 1.5;
+}
+
 .start-button {
   width: 25%;
   height: 10%;
