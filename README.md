@@ -1,6 +1,6 @@
 # Debugger Defense
 
-[link to live site]
+[Live Link](https://debuggerdefense.herokuapp.com/#/)
 
 ## Background and Overview
 
