@@ -8,30 +8,34 @@ background.src = '/game/circuitboard.png';
 const destinationImage = new Image();
 destinationImage.src = '/game/Prod_256.png';
 
-
-
 class GamePlay {
   constructor(currentUsername, ctx, createScore) {
     this.currentUsername = currentUsername;
     this.ctx = ctx;
     this.destination = [970, 570];
-    this.difficulty = 8;
-    this.killCount = 120;
+    this.difficulty = 1;
+    this.killCount = 0;
     this.lives = 100;
     this.score = 0;
     this.secondsElapsed = 0;
     this.startingTime = 0;
     this.background = background;
     this.destinationImage = destinationImage;
-   
 
     this.startingTime = Date.now();
     this.elapsedTime = null;
-    
-    this.bugs = new Array(5).fill().map(el => new Bug(this.difficulty, this.startingTime));
+
+    this.bugs = new Array(5)
+      .fill()
+      .map(el => new Bug(this.difficulty, this.startingTime));
     this.unkilledBugs = [];
     this.deaths = [];
     this.createScore = createScore;
+
+    this.audio = new Audio('the_chase.mp3');
+    this.audio.loop = true;
+    this.audio.volume = 0.5;
+    this.audio.play();
 
     this.parse();
     this.animate();
@@ -77,15 +81,16 @@ class GamePlay {
       this.gameOver();
       this.createScore({
         score: this.score,
-        secondsElapsed: Math.floor(
-          (Date.now() - this.startingTime) / 1000
-        ),
+        secondsElapsed: Math.floor((Date.now() - this.startingTime) / 1000),
         username: this.currentUsername
       });
     }
   }
 
   gameOver() {
+    this.audio.pause();
+    this.audio.currentTime = 0;
+
     this.ctx.font = "100px 'Press Start 2P', cursive";
     this.ctx.fillStyle = "white";
     this.ctx.fillRect(50, 50, 900, 500);
@@ -98,8 +103,8 @@ class GamePlay {
 
     let xVal = 97;
     let yVal = 250;
-    
-    for(let i = 0; i < this.unkilledBugs.length; i++) {
+
+    for (let i = 0; i < this.unkilledBugs.length; i++) {
       if (i % 5 === 0) {
         yVal += 50;
       }
@@ -113,7 +118,7 @@ class GamePlay {
 
     this.ctx.fillStyle = "red";
     this.ctx.font = "20px 'Press Start 2P', cursive";
-    this.ctx.fillText("Your score has been submitted!", 200, 510)
+    this.ctx.fillText("Your score has been submitted!", 200, 510);
   }
 
   step() {
@@ -122,9 +127,9 @@ class GamePlay {
     });
     this.deaths.forEach((death, i) => {
       if (death.doneExploding) {
-        this.deaths.splice(i, 1)
+        this.deaths.splice(i, 1);
       }
-    })
+    });
   }
 
   detectCollision() {
@@ -141,13 +146,15 @@ class GamePlay {
   }
 
   detectFullSpelling() {
+    let snd = new Audio("bug_death_laser.mp3");
     if (this.bugs.length > 0) {
       this.bugs.forEach((bug, i) => {
         if (bug.word[bug.word.length - 1] === "_") {
-          this.deaths.push(new Explosion(bug.position))
-          this.bugs.splice(i, 1);   
+          this.deaths.push(new Explosion(bug.position));
+          this.bugs.splice(i, 1);
           this.killCount += 1;
           this.score += 100 * this.difficulty;
+          snd.play();
         }
       });
     }
@@ -184,11 +191,11 @@ class GamePlay {
     this.drawPlayerInfo(ctx);
     this.drawDestination(ctx);
     this.drawBugs(ctx);
-    this.drawDeath(ctx);  
+    this.drawDeath(ctx);
   }
 
   drawBackground(ctx) {
-    ctx.drawImage(this.background, 0, 0, 1000, 600)
+    ctx.drawImage(this.background, 0, 0, 1000, 600);
     ctx.fillStyle = "white";
     ctx.fillRect(0, 600, 1000, 630);
   }
@@ -201,7 +208,7 @@ class GamePlay {
 
   drawDeath(ctx) {
     this.deaths.forEach(death => {
-      debugger
+      debugger;
       death.draw(ctx);
     });
   }
@@ -210,36 +217,38 @@ class GamePlay {
     const elapsedTime = Date.now() - this.startingTime;
 
     if (elapsedTime % 1000 < 500) {
-      ctx.drawImage(this.destinationImage, 0, 0, 224, 224, 720, 385, 320, 320)
+      ctx.drawImage(this.destinationImage, 0, 0, 224, 224, 720, 385, 320, 320);
     } else {
-      ctx.drawImage(this.destinationImage, 256, 0, 224, 224, 720, 385, 320, 320)
+      ctx.drawImage(
+        this.destinationImage,
+        256,
+        0,
+        224,
+        224,
+        720,
+        385,
+        320,
+        320
+      );
     }
     ctx.font = "12px 'Press Start 2P', cursive";
     ctx.fillStyle = "black";
-    ctx.fillText("Production", 840, 545)
+    ctx.fillText("Production", 840, 545);
   }
 
-  /*
-    kill count
-    seconds
-    level
-
-
-    score
-    lives
-  */
   drawPlayerInfo(ctx) {
     ctx.fillStyle = "black";
     ctx.font = "15px 'Press Start 2P', cursive";
-    ctx.fillText(`Level: ${this.difficulty}`, 10, 622 );
+    ctx.fillText(`Level: ${this.difficulty}`, 10, 622);
     ctx.fillText(`Kills: ${this.killCount}`, 170, 622);
     ctx.fillText(`Time: ${this.elapsedTime}`, 350, 622);
     ctx.fillText(`Score: ${this.score}`, 600, 622);
 
-    this.lives <= 25 ? ctx.fillStyle = "red" : ctx.fillStyle = "green"
+    this.lives <= 25 ? (ctx.fillStyle = "red") : (ctx.fillStyle = "green");
     ctx.fillText(`Health: ${this.lives}`, 830, 622);
-
   }
 }
+
+
 
 export default GamePlay;
