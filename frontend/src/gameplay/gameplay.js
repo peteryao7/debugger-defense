@@ -32,6 +32,11 @@ class GamePlay {
     this.deaths = [];
     this.createScore = createScore;
 
+    this.audio = new Audio('the_chase.mp3');
+    this.audio.loop = true;
+    this.audio.volume = 1;
+    this.audio.play();
+
     this.parse();
     this.duckParse();
     this.animate();
@@ -88,11 +93,12 @@ class GamePlay {
     let x = Math.random();
     if (x < 0.02 && this.bugs.length < 20) {
       this.moreBugs();
+      if (this.elapsedTime >= 300 && x < 0.05) this.moreBugs();
     }
 
     //randomly add ducks
     let duckChance = Math.random();
-    if (duckChance < 0.001) {
+    if (duckChance < 0.0005) {
       this.moreDucks();
     }
 
@@ -103,15 +109,16 @@ class GamePlay {
       this.gameOver();
       this.createScore({
         score: this.score,
-        secondsElapsed: Math.floor(
-          (Date.now() - this.startingTime) / 1000
-        ),
+        secondsElapsed: Math.floor((Date.now() - this.startingTime) / 1000),
         username: this.currentUsername
       });
     }
   }
 
   gameOver() {
+    this.audio.pause();
+    this.audio.currentTime = 0;
+
     this.ctx.font = "100px 'Press Start 2P', cursive";
     this.ctx.fillStyle = "white";
     this.ctx.fillRect(50, 50, 900, 500);
@@ -124,8 +131,8 @@ class GamePlay {
 
     let xVal = 97;
     let yVal = 250;
-    
-    for(let i = 0; i < this.unkilledBugs.length; i++) {
+
+    for (let i = 0; i < this.unkilledBugs.length; i++) {
       if (i % 5 === 0) {
         yVal += 50;
       }
@@ -139,7 +146,7 @@ class GamePlay {
 
     this.ctx.fillStyle = "red";
     this.ctx.font = "20px 'Press Start 2P', cursive";
-    this.ctx.fillText("Your score has been submitted!", 200, 510)
+    this.ctx.fillText("Your score has been submitted!", 200, 510);
   }
 
   step() {
@@ -153,9 +160,9 @@ class GamePlay {
 
     this.deaths.forEach((death, i) => {
       if (death.doneExploding) {
-        this.deaths.splice(i, 1)
+        this.deaths.splice(i, 1);
       }
-    })
+    });
   }
 
   detectCollision() {
@@ -182,13 +189,15 @@ class GamePlay {
   }
 
   detectFullSpelling() {
+    let snd = new Audio("bug_death_laser.mp3");
     if (this.bugs.length > 0) {
       this.bugs.forEach((bug, i) => {
         if (bug.word[bug.word.length - 1] === "_") {
-          this.deaths.push(new Explosion(bug.position))
-          this.bugs.splice(i, 1);   
+          this.deaths.push(new Explosion(bug.position));
+          this.bugs.splice(i, 1);
           this.killCount += 1;
-          this.score += 100 * this.difficulty;
+          this.score += 100 * bug.difficulty;
+          snd.play();
         }
       });
     }
@@ -201,8 +210,9 @@ class GamePlay {
 
           this.bugs.forEach(bug => {
             this.deaths.push(new Explosion(bug.position))
+            this.score += 100 * bug.difficulty
           })
-
+          this.killCount += this.bugs.length
           this.bugs = []
         }
       });
@@ -211,23 +221,23 @@ class GamePlay {
   }
 
   incrementDifficulty() {
-    if (this.killCount >= 160) {
+    if (this.killCount >= 200) {
       this.difficulty = 10;
-    } else if (this.killCount >= 140) {
+    } else if (this.killCount >= 175) {
       this.difficulty = 9;
-    } else if (this.killCount >= 120) {
+    } else if (this.killCount >= 150) {
       this.difficulty = 8;
-    } else if (this.killCount >= 100) {
+    } else if (this.killCount >= 125) {
       this.difficulty = 7;
-    } else if (this.killCount >= 80) {
+    } else if (this.killCount >= 100) {
       this.difficulty = 6;
-    } else if (this.killCount >= 60) {
+    } else if (this.killCount >= 75) {
       this.difficulty = 4;
-    } else if (this.killCount >= 40) {
+    } else if (this.killCount >= 50) {
       this.difficulty = 3;
-    } else if (this.killCount > 20) {
+    } else if (this.killCount > 25) {
       this.difficulty = 2;
-    } else if (this.killCount <= 20) {
+    } else if (this.killCount <= 25) {
       this.difficulty = 1;
     }
   }
@@ -250,7 +260,7 @@ class GamePlay {
   }
 
   drawBackground(ctx) {
-    ctx.drawImage(this.background, 0, 0, 1000, 600)
+    ctx.drawImage(this.background, 0, 0, 1000, 600);
     ctx.fillStyle = "white";
     ctx.fillRect(0, 600, 1000, 630);
   }
@@ -269,7 +279,7 @@ class GamePlay {
 
   drawDeath(ctx) {
     this.deaths.forEach(death => {
-      debugger
+      debugger;
       death.draw(ctx);
     });
   }
@@ -278,27 +288,38 @@ class GamePlay {
     const elapsedTime = Date.now() - this.startingTime;
 
     if (elapsedTime % 1000 < 500) {
-      ctx.drawImage(this.destinationImage, 0, 0, 224, 224, 720, 385, 320, 320)
+      ctx.drawImage(this.destinationImage, 0, 0, 224, 224, 720, 385, 320, 320);
     } else {
-      ctx.drawImage(this.destinationImage, 256, 0, 224, 224, 720, 385, 320, 320)
+      ctx.drawImage(
+        this.destinationImage,
+        256,
+        0,
+        224,
+        224,
+        720,
+        385,
+        320,
+        320
+      );
     }
     ctx.font = "12px 'Press Start 2P', cursive";
     ctx.fillStyle = "black";
-    ctx.fillText("Production", 840, 545)
+    ctx.fillText("Production", 840, 545);
   }
 
   drawPlayerInfo(ctx) {
     ctx.fillStyle = "black";
     ctx.font = "15px 'Press Start 2P', cursive";
-    ctx.fillText(`Level: ${this.difficulty}`, 10, 622 );
+    ctx.fillText(`Level: ${this.difficulty}`, 10, 622);
     ctx.fillText(`Kills: ${this.killCount}`, 170, 622);
     ctx.fillText(`Time: ${this.elapsedTime}`, 350, 622);
     ctx.fillText(`Score: ${this.score}`, 600, 622);
 
-    this.lives <= 25 ? ctx.fillStyle = "red" : ctx.fillStyle = "green"
+    this.lives <= 25 ? (ctx.fillStyle = "red") : (ctx.fillStyle = "green");
     ctx.fillText(`Health: ${this.lives}`, 830, 622);
-
   }
 }
+
+
 
 export default GamePlay;

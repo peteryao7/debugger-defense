@@ -8,6 +8,8 @@
 
     display: flex;
     justify-content: center;
+    max-width: 1400px;
+    margin: auto;
 }
 
 a { 
@@ -28,6 +30,7 @@ a {
     align-items: center;
     font-size: 12px;
     padding-bottom: 5px;
+    padding-left: 20px;
 
     position: absolute;
     left: 0;
@@ -56,11 +59,12 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-
-    cursor: pointer;
 }
 
 .nav-logout {
-    margin-right: 10px;
+    margin-right: 30px;
 }
 
+.nav-logout:hover {
+    cursor: pointer;
+}

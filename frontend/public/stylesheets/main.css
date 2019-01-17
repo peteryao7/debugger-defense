@@ -8,6 +8,8 @@
     font-family: 'Press Start 2P', cursive;
     display: flex;
     justify-content: space-around;
+    max-width: 1400px;
+    margin: auto;
 }
 
 .game-box {
