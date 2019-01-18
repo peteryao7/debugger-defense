@@ -15,7 +15,6 @@ Bugs traverse a path through a circuit to production and have words above them. 
 - [ ] Animation: map correctly displays bug movement and death (map render?)
 - [ ] Gameplay: game starts, and bugs (word lengths) get progressively more difficult until end, scoring and lives system
 - [ ] Saving of user’s high score to database and global high score board
-- [ ] Implementation of multiplayer (websockets)
 - [ ] Production README
 - [ ] Deploy to Heroku
 
@@ -27,9 +26,6 @@ MERN Stack:
 - Express
 - React
 - Node.js
-
-### Other Technologies
-- Websocket API (for multiplayer)
 
 ### Technical Challenges:
 - Animation: bug movement
