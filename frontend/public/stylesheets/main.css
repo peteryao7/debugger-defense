@@ -1,10 +1,10 @@
 .full-app {
     min-height: 100vh;
-    background: lightgrey;
+    background: #d0d0d0;
 }
 
 .main-outer-container {
-    background: lightgrey;
+    background: #d0d0d0;
     font-family: 'Press Start 2P', cursive;
     display: flex;
     justify-content: space-around;
