@@ -9,32 +9,52 @@ const AboutUs = () => {
           <div>
             <h1>Sarah Peters</h1>
           </div>
-          <div className="github-logo"
-            onClick={() => window.open("https://github.com/kat-onyx")}>
+          <div className="about-logos">
+            <div className="github logo"
+              onClick={() => window.open("https://github.com/kat-onyx")}>
+            </div>
+            <div className="linkedin logo"
+              onClick={() => window.open("https://www.linkedin.com/in/sarah-peters-a2695b8a/")}>
+            </div>
           </div>
         </div>
         <div className="about-person">
           <div>
             <h1>Skylar Prill</h1>
           </div>
-          <div className="github-logo"
-            onClick={() => window.open("https://github.com/L412")}>
+          <div className="about-logos">
+            <div className="github logo"
+              onClick={() => window.open("https://github.com/L412")}>
+            </div>
+            <div className="linkedin logo"
+              onClick={() => window.open("https://www.linkedin.com/in/shp1990/")}>
+            </div>
           </div>
         </div>
         <div className="about-person">
           <div>
             <h1>Peter Yao</h1>
           </div>
-          <div className="github-logo"
-            onClick={() => window.open("https://github.com/peteryao7")}>
+          <div className="about-logos">
+            <div className="github logo"
+              onClick={() => window.open("https://github.com/peteryao7")}>
+            </div>
+            <div className="linkedin logo"
+              onClick={() => window.open("https://www.linkedin.com/in/pyao7/")}>
+            </div>
           </div>
         </div>
         <div className="about-person">
           <div>
             <h1>Peter Zeng</h1>
           </div>
-          <div className="github-logo"
-            onClick={() => window.open("https://github.com/pzengpzeng")}>
+          <div className="about-logos">
+            <div className="github logo"
+              onClick={() => window.open("https://github.com/pzengpzeng")}>
+            </div>
+            <div className="linkedin logo"
+              onClick={() => window.open("https://www.linkedin.com/in/pzengpzeng/")}>
+            </div>
           </div>
         </div>
       </div>

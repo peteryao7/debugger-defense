@@ -67,8 +67,11 @@
   background: gray;
 }
 
-.github-logo {
-  background-image: url("../game/github.png");
+.about-logos {
+  display: flex;
+}
+
+.logo {
   display: inline-block;
   background-size: 25px 25px;
   background-repeat: no-repeat;
@@ -77,8 +80,17 @@
   height: 0;
   width: 25px;
   padding-top: 25px;
+  margin: 5px;
 
   cursor: pointer;
+}
+
+.github {
+  background-image: url("../game/github.png");
+}
+
+.linkedin {
+  background-image: url("../game/linkedin.png");
 }
 
 .about-story{
