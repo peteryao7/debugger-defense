@@ -1,77 +1,112 @@
 # Debugger Defense
+Debugger Defense is a competitive typing game. Bugs crawl across the screen in the hopes of infiltrating your final product, so squash them by typing out their assoicated words! You have all the time in the world, but that's just the problem... they never stop coming! Commit yourself to the endless fight, and make your mark on the leaderboard. [Play online!](https://debuggerdefense.herokuapp.com/#/)
 
-[Live Link](https://debuggerdefense.herokuapp.com/#/)
+Created by: [Sarah Kat Peters](https://github.com/kat-onyx), [Skylar Prill](https://github.com/L412/), [Peter Yao](https://github.com/peteryao7), [Peter Zeng](https://github.com/pzengpzeng)
 
-## Background and Overview
+<p align="center" >
+ <img src="https://github.com/peteryao7/debugger-defense/blob/master/frontend/public/game/debugger-defense-gameplay.png" width="600" />
+</p>
 
-Debugger Defense is a typing game that incorporates gameplay elements from Typing Ninja Hunter on a game map similar to that of a tower defense game, such as Bloons Tower Defense. The game is built primarily with the MERN stack.
+# Technologies
+* MERN Stack —— MongoDB, Express.js, React.js, Node.js
+* HTML's Canvas Element
+* JavaScript
+* Redux.js
 
-Bugs traverse a path through a circuit to production and have words above them. If a bug reaches production with letters above them, the player will lose health. The goal of the game is to kill bugs by typing their respective words before they reach production and achieve the highest score before the player runs out of health. As the level increases, bugs will have longer words for the player to type out. Compete for the highest score on the leaderboard!
+# Core Features
+### Fresh Gameplay
+Debugger Defense is a new game every time you play. With Object Oriented Programming, we were able to make each Bug its own class, and thus kept track of local state and initialized each Bug to a different speed, starting position, and word. Our dictionary parsing tool and progressively steepening difficulty metrics make sure that you receive a varied dose of words, both short and long!
 
-## Functionality and MVP
-- [ ] User authorization: sign up and log in
-- [ ] Game parses user typing input and compares against bug words
-- [ ] Import dictionary, create logic to randomly select words based on game-difficulty 
-- [ ] Animation: map correctly displays bug movement and death (map render?)
-- [ ] Gameplay: game starts, and bugs (word lengths) get progressively more difficult until end, scoring and lives system
-- [ ] Saving of user’s high score to database and global high score board
-- [ ] Production README
-- [ ] Deploy to Heroku
+##### Bug Constructor
+```javascript
+class Bug {
+  constructor(difficulty, gameStartTime) {
+    this.word = getRandomWord(difficulty);
+    this.speed = Math.random() * (2000 - 500) + 500;
+    this.radius = 45;
+    this.difficulty = difficulty;
+    
+    let xPos, yPos;
 
-## Technologies and Technical Challenges
+    if (Math.random() > 0.5) {
+      xPos = 5;
+      yPos = Math.random() * (600 - 150);
+    } else {
+      xPos = Math.random() * (600 - 150);
+      yPos = 5;
+    }
+    
+    this.position = [xPos, yPos];
+    
+    // vectors to destination
+    this.xDiff = 970 - this.position[0];
+    this.yDiff = 570 - this.position[1];
+  }
+```
 
-### Technologies:
-MERN Stack:
-- MongoDB
-- Express
-- React
-- Node.js
+### Iteractive Typing
+It's all about typing. By chaining an event listener to the window, we allow the user to type madly at their keyboard without having to worry about clicking on a specific enemy. In order to keep the gameplay smooth across browsers and machines, we relied on the window's `requestAnimationFrame()` method to properly calibrate frame rendering and avoid jerky animations or skipping gameplay.
 
-### Technical Challenges:
-- Animation: bug movement
-- Map creation
-- Websockets/multiplayer
-- Live parsing of user input
-- Difficulty scaling and making sure animations align with user input (keeping track of all possible words that can be squashed)
+##### Event Listener for Typing
+```javascript
+parse() {
+    window.addEventListener("keydown", event => {
+      for (let i = 0; i < this.bugs.length; i++) {
+        for (let j = 0; j < this.bugs[i].word.length; j++) {
+          if (this.bugs[i].word.charAt(j) === "_") {
+            continue;
+          } else if (event.key === this.bugs[i].word.charAt(j)) {
+            this.bugs[i].word = this.bugs[i].word.replace(
+              this.bugs[i].word.charAt(j),
+              "_"
+            );
+            break;
+          } else {
+            break;
+          }
+        }
+      }
+    });
+  }
+```
 
-## Things Accomplished Over the Weekend
-- Preparatory MERN Twitter project
-- Proposal README and workflow organization
+##### `requestAnimationFrame()` Loop
+```javascript 
+animate() {
+  this.detectCollision();
+  this.detectFullSpelling();
+  this.incrementDifficulty();
+  this.draw(this.ctx);
+  this.step();
 
-## Group Members and Work Breakdown (per individual)
-Kat Peters, Skylar Prill, Peter Yao, Peter Zeng
+  requestAnimationFrame(this.animate.bind(this));
+}
+```
 
-### Day One (Wed, Jan 2)
-- Build database and file structure (Peter and Peter)
-- User Authentication (Peter and Peter)
-- Organize Map and Game Design (Skylar)
-- Investigate (multiplayer) websockets (Kat)--Compile documentation
+### Leaderboard
+To keep users coming back, it's important to give them benchmarks against which to compete. By using asynchronous axios requests to the back-end and organizing the fetched data into the appropriate order, Debugger Defense keeps a current list of the top typing athletes. It updates as soon as you finish your game, so place yourself among the greats!
 
-### Day Two
-- Finalize map (Skylar)
-- Asset animation (bug crawling) (Peter Z and Kat)
-- Back-end Bug class (Kat and Peter Z)
-- Dictionary parsing and difficulty logic (Peter Y)
-
-### Day Three
-- Develop asset animation across map (Peter Z and Kat)
-- Implement user input interaction (Peter Y and Skylar)
-
-### Day Four
-- Finalize asset animation across map (Peter Z and Kat)
-- Finalize user input interaction (Peter Y and Skylar)
-- Achieve working gameplay (All team members)
-
-### Day Five
-- Extending game logic (scores, lives) (Peter Y)
-- Implement scoreboard and ranking (Peter Z)
-- Develop multiplayer functionality (Kat and Skylar)
- 
-### Day Six
-- Finalize styling (CSS and animation art) (Peter and Peter)
-- Finalize multiplayer functionality (Kat and Skylar)
-
-### Day Seven
-- Finish testing and debugging (all team members)
-- Refine CSS and design (all team members)
-- Polish Production README
+##### Formatting Scores with JavaScript XML
+```javascript 
+formatScores() {
+  let counter = 0;
+  const formatted = this.props.scores.map(score => {
+      counter += 1;
+      return (
+        <li key={score.date} className="leaderboard-single-score">
+          {this.counterColor(counter)}
+          <div className="score-info">
+            <br/>
+            {score.username} 
+            <br/> 
+            {score.score} points
+            <br/> 
+            {score.secondsElapsed} seconds
+            <div/>
+          </div>
+        </li>
+        )
+  })
+  return formatted;
+    }
+```
