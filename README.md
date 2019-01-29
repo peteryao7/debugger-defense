@@ -1,5 +1,7 @@
 # Debugger Defense
-Debugger Defense is a competitive typing game. Bugs crawl across the screen in the hopes of infiltrating your final product, so squash them by typing out their associated words! You have all the time in the world, but that's just the problem... they never stop coming! Commit yourself to the endless fight, and make your mark on the leaderboard. [Play online!](https://debuggerdefense.herokuapp.com/#/)
+[Play online!](https://debuggerdefense.herokuapp.com/#/)
+
+Debugger Defense is a competitive typing game. Bugs crawl across the screen in the hopes of infiltrating your final product, so squash them by typing out their associated words! You have all the time in the world, but that's just the problem... they never stop coming! Commit yourself to the endless fight, and make your mark on the leaderboard.
 
 Created by: [Sarah Kat Peters](https://github.com/kat-onyx), [Skylar Prill](https://github.com/L412/), [Peter Yao](https://github.com/peteryao7), [Peter Zeng](https://github.com/pzengpzeng)
 
@@ -107,6 +109,7 @@ formatScores() {
         </li>
         )
   })
+  
   return formatted;
-    }
+}
 ```
