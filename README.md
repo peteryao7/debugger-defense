@@ -10,7 +10,7 @@ Created by: [Sarah Kat Peters](https://github.com/kat-onyx), [Skylar Prill](http
 </p>
 
 # Technologies
-* MERN Stack —— MongoDB, Express.js, React.js, Node.js
+* MERN Stack — MongoDB, Express.js, React.js, Node.js
 * HTML's Canvas Element
 * JavaScript
 * Redux.js
