@@ -16,18 +16,18 @@ canvas {
   width: 100%;
   display: flex;
   justify-content: space-between;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .restart-button {
   width: 150px;
-  height: 75px;
+  height: 38px;
   cursor: pointer;
   text-transform: uppercase;
 
   display: flex;
   justify-content: center;
-  align-items: center;
+  align-items: flex-end;
 }
 
 .restart-button:hover {

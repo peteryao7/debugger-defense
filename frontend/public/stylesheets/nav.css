@@ -1,6 +1,6 @@
 .navbar-container {
     width: 100%;
-    height: 75px;
+    height: 60px;
     font-family: 'Press Start 2P', cursive;
     text-transform: uppercase;
     background: #d0d0d0;
@@ -24,7 +24,7 @@ a {
 }
 
 .navbar-sisu, .welcome-message {
-    height: 75px;
+    height: 60px;
     display: flex;
     justify-content: flex-start;
     align-items: center;
