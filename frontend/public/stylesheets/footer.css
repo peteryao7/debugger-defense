@@ -1,9 +1,9 @@
 .footer {
     background: #d0d0d0;
-    height: 75px;
+    height: 40px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .about-us {
