@@ -6,7 +6,7 @@ Debugger Defense is a competitive typing game. Bugs crawl across the screen in t
 Created by: [Sarah Kat Peters](https://github.com/kat-onyx), [Skylar Prill](https://github.com/L412/), [Peter Yao](https://github.com/peteryao7), [Peter Zeng](https://github.com/pzengpzeng)
 
 <p align="center" >
- <img src="https://github.com/peteryao7/debugger-defense/blob/master/frontend/public/game/debugger-defense-gameplay.png" width="600" />
+ <img src="./frontend/public/game/github-ss.png" width="600" />
 </p>
 
 # Technologies
