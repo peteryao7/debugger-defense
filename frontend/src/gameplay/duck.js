@@ -37,7 +37,7 @@ class Duck {
     const elapsedTime = Date.now() - this.gameStartTime;
 
     if (elapsedTime % 1000 <= 500) {
-      debugger
+
       ctx.drawImage(
         this.image,
         0,
@@ -62,7 +62,7 @@ class Duck {
         90
       );
     }
-  } 
+  }
 
   drawWordBackground(ctx, wordLength) {
     let rectX = 0;
@@ -73,7 +73,7 @@ class Duck {
     ctx.lineJoin = "round";
 
     ctx.fillStyle = "white"; // background color of bug text
-    
+
     rectX = this.position[0] - 85;
     rectWidth = 260;
 

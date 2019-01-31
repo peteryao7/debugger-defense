@@ -279,7 +279,6 @@ class GamePlay {
 
   drawDeath(ctx) {
     this.deaths.forEach(death => {
-      debugger;
       death.draw(ctx);
     });
   }
