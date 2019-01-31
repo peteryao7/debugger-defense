@@ -41,6 +41,7 @@ li.leaderboard-single-score {
 
 .place-number {
     margin-top: 2px;
+    min-width: 25px;
 }
 
 .first-place{
