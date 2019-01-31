@@ -1,9 +1,9 @@
 .footer {
     background: #d0d0d0;
-    height: 75px;
+    height: 40px;
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-end;
 }
 
 .about-us {
@@ -64,7 +64,11 @@
 }
 
 .about-person:hover {
-  background: gray;
+  background-color: rgba(0, 128, 0, 0.301);
+}
+
+.about-person:hover .about-person-name {
+  text-decoration: underline;
 }
 
 .about-logos {
@@ -81,8 +85,11 @@
   width: 25px;
   padding-top: 25px;
   margin: 5px;
-
   cursor: pointer;
+}
+
+.logo:hover {
+  transform: scale(1.2);
 }
 
 .github {

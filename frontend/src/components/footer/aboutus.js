@@ -7,7 +7,7 @@ const AboutUs = () => {
       <div className="persons-box">
         <div className="about-person">
           <div>
-            <h1>Sarah Peters</h1>
+            <h1 className="about-person-name">Sarah Peters</h1>
           </div>
           <div className="about-logos">
             <div className="github logo"
@@ -20,7 +20,7 @@ const AboutUs = () => {
         </div>
         <div className="about-person">
           <div>
-            <h1>Skylar Prill</h1>
+            <h1 className="about-person-name">Skylar Prill</h1>
           </div>
           <div className="about-logos">
             <div className="github logo"
@@ -33,7 +33,7 @@ const AboutUs = () => {
         </div>
         <div className="about-person">
           <div>
-            <h1>Peter Yao</h1>
+            <h1 className="about-person-name">Peter Yao</h1>
           </div>
           <div className="about-logos">
             <div className="github logo"
@@ -46,7 +46,7 @@ const AboutUs = () => {
         </div>
         <div className="about-person">
           <div>
-            <h1>Peter Zeng</h1>
+            <h1 className="about-person-name">Peter Zeng</h1>
           </div>
           <div className="about-logos">
             <div className="github logo"

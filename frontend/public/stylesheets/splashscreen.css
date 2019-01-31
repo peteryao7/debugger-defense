@@ -5,6 +5,7 @@
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
+  border: 6px solid black;
 
   overflow: hidden;
 
@@ -32,7 +33,7 @@
   justify-content: center;
   align-items: center;
   text-transform: uppercase;
-
+  border: 3px solid white;
   cursor: pointer;
   background: black;
 }

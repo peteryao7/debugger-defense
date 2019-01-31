@@ -13,7 +13,7 @@ class LeaderBoard extends React.Component {
 
     counterColor(num) {
         if (num === 1) {
-            return <div className="first-place"> 
+            return <div className="first-place">
                 {num}
             </div>
         } else if (num === 2) {
@@ -31,16 +31,13 @@ class LeaderBoard extends React.Component {
         const formatted = this.props.scores.map(score => {
             counter += 1;
             return (<li key={score.date} className="leaderboard-single-score">
-            {this.counterColor(counter)}
-            <div className="score-info">
-            <br/>
-            {score.username} 
-            <br/> 
-            {score.score} points
-            <br/> 
-            {score.secondsElapsed} seconds
-            <div/>
-            </div></li>)
+                <div className="place-number">{this.counterColor(counter)}</div>
+                <div className="score-info">
+                    <div className="single-score-username">{score.username} </div>
+                    <div className="single-score-score">  {score.score.toLocaleString()} points</div>
+                    <div className="single-score-time"> {score.secondsElapsed.toLocaleString()} seconds</div>
+                    <div />
+                </div></li>)
         }
         )
         return formatted;
