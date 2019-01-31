@@ -2,6 +2,10 @@
   margin: 10px;
 }
 
+canvas {
+  border: 6px solid black;
+}
+
 .canvas-restart-container {
     display: flex;
     flex-direction: column;
