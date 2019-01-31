@@ -1,3 +1,7 @@
+html, body {
+    background-color: #d0d0d0;
+}
+
 .full-app {
     min-height: 100vh;
     background: #d0d0d0;
