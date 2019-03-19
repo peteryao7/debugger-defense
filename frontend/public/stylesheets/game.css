@@ -34,8 +34,8 @@ canvas {
   background: green;
 }
 
-.mute-button {
-    width: 150px;
+#mute-button, #mute-button-muted {
+  width: 150px;
   height: 38px;
   cursor: pointer;
   text-transform: uppercase;
@@ -45,6 +45,14 @@ canvas {
   align-items: flex-end;
 }
 
-.mute-button:hover {
+#mute-button-muted {
+  background: green;
+}
+
+#mute-button-muted:hover {
+  background: none;
+}
+
+#mute-button:hover {
   background: green;
 }

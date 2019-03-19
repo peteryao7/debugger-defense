@@ -27,12 +27,15 @@ class Game extends React.Component {
     }
 
     muteSound() {
+        
         if (this.newGame.muted && this.newGame.lives > 0) {
             this.newGame.muted = false;
             this.newGame.audio.play();
+            document.getElementById("mute-button-muted").id = "mute-button";
         } else if (!this.newGame.muted && this.newGame.lives > 0) {
             this.newGame.muted = true;
             this.newGame.audio.pause();
+            document.getElementById("mute-button").id = "mute-button-muted";
         }
     }
 
@@ -51,7 +54,7 @@ class Game extends React.Component {
                         <div className="restart-button" onClick={this.initializeGame}>
                             <div>Restart</div>
                         </div>
-                        <div className="mute-button" onClick={this.muteSound}>Mute</div>
+                        <div id="mute-button" onClick={this.muteSound}>Mute</div>
                         <PlayerScoreContainer />
                     </div>
                     
