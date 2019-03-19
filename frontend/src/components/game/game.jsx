@@ -20,22 +20,19 @@ class Game extends React.Component {
         const canvas = this.refs.canvas;
         const ctx = canvas.getContext("2d");
         if (this.newGame) {
-            this.newGame.gameOver();
-            this.playing = false;
+            this.newGame.gameReset();
+        } else {
+            this.newGame = new GamePlay(this.props.currentUsername, ctx, this.props.createScore);
         }
-        this.newGame = new GamePlay(this.props.currentUsername, ctx, this.props.createScore);
     }
 
     muteSound() {
-        
         if (this.newGame.muted && this.newGame.lives > 0) {
             this.newGame.muted = false;
             this.newGame.audio.play();
-            document.getElementById("mute-button-muted").id = "mute-button";
         } else if (!this.newGame.muted && this.newGame.lives > 0) {
             this.newGame.muted = true;
             this.newGame.audio.pause();
-            document.getElementById("mute-button").id = "mute-button-muted";
         }
     }
 
@@ -49,20 +46,20 @@ class Game extends React.Component {
             return (
                 <div className="canvas-restart-container">
                     <canvas ref="canvas" width={1000} height={630} />
-                    
+
                     <div className="game-footer">
                         <div className="restart-button" onClick={this.initializeGame}>
                             <div>Restart</div>
                         </div>
-                        <div id="mute-button" onClick={this.muteSound}>Mute</div>
+                        <div className="mute-button" onClick={this.muteSound}>Mute</div>
                         <PlayerScoreContainer />
                     </div>
-                    
+
                 </div >
             )
         } else {
             return (
-                <Splashscreen startPlaying={this.startPlaying}/>
+                <Splashscreen startPlaying={this.startPlaying} />
             )
         }
 

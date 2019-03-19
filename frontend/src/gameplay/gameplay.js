@@ -150,6 +150,25 @@ class GamePlay {
     this.ctx.fillText("Your score has been submitted!", 200, 510);
   }
 
+  gameReset() {
+    this.difficulty = 1;
+    this.killCount = 0;
+    this.lives = 100;
+    this.score = 0;
+    this.secondsElapsed = 0;
+    this.startingTime = 0;
+
+    this.startingTime = Date.now();
+    this.elapsedTime = 0;
+
+    this.bugs = new Array(5).fill().map(() => new Bug(this.difficulty, this.startingTime));
+    this.ducks = [];
+    this.unkilledBugs = [];
+    this.deaths = [];
+
+    this.audio.currentTime = 0;
+  }
+
   step() {
     this.bugs.forEach(bug => {
       bug.move();
