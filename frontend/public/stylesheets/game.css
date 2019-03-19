@@ -33,3 +33,26 @@ canvas {
 .restart-button:hover {
   background: green;
 }
+
+#mute-button, #mute-button-muted {
+  width: 150px;
+  height: 38px;
+  cursor: pointer;
+  text-transform: uppercase;
+
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+#mute-button-muted {
+  background: green;
+}
+
+#mute-button-muted:hover {
+  background: none;
+}
+
+#mute-button:hover {
+  background: green;
+}

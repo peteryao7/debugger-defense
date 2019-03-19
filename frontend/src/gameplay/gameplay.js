@@ -35,6 +35,7 @@ class GamePlay {
     this.audio = new Audio('the_chase.mp3');
     this.audio.loop = true;
     this.audio.volume = 1;
+    this.muted = false;
     this.audio.play();
 
     this.parse();
@@ -197,7 +198,9 @@ class GamePlay {
           this.bugs.splice(i, 1);
           this.killCount += 1;
           this.score += 100 * bug.difficulty;
-          snd.play();
+          if (!this.muted) {
+            snd.play();
+          }
         }
       });
     }
