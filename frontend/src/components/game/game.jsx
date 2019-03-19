@@ -51,7 +51,7 @@ class Game extends React.Component {
                         <div className="restart-button" onClick={this.initializeGame}>
                             <div>Restart</div>
                         </div>
-                        <div className="mute" onClick={this.muteSound}>Mute</div>
+                        <div className="mute-button" onClick={this.muteSound}>Mute</div>
                         <PlayerScoreContainer />
                     </div>
                     
