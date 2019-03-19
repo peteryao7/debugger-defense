@@ -13,12 +13,27 @@ class Game extends React.Component {
 
         this.startPlaying = this.startPlaying.bind(this);
         this.initializeGame = this.initializeGame.bind(this);
+        this.muteSound = this.muteSound.bind(this);
     }
 
     initializeGame() {
         const canvas = this.refs.canvas;
         const ctx = canvas.getContext("2d");
-        new GamePlay(this.props.currentUsername, ctx, this.props.createScore)
+        if (this.newGame) {
+            this.newGame.gameOver();
+            this.playing = false;
+        }
+        this.newGame = new GamePlay(this.props.currentUsername, ctx, this.props.createScore);
+    }
+
+    muteSound() {
+        if (this.newGame.muted && this.newGame.lives > 0) {
+            this.newGame.muted = false;
+            this.newGame.audio.play();
+        } else if (!this.newGame.muted && this.newGame.lives > 0) {
+            this.newGame.muted = true;
+            this.newGame.audio.pause();
+        }
     }
 
     startPlaying() {
@@ -36,6 +51,7 @@ class Game extends React.Component {
                         <div className="restart-button" onClick={this.initializeGame}>
                             <div>Restart</div>
                         </div>
+                        <div className="mute" onClick={this.muteSound}>Mute</div>
                         <PlayerScoreContainer />
                     </div>
                     
